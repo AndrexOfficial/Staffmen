@@ -1,0 +1,80 @@
+
+body{
+  background-color: #f8f9fa!important;
+  /*font-family: 'Apercu', sans-serif!important;*/
+  /*color: #304351!important;*/
+}
+/*
+
+.card-columns {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    -webkit-column-gap: 1.25rem;
+    -moz-column-gap: 1.25rem;
+    column-gap: 1.25rem;
+}
+
+@media (min-width: 576px)
+.card-columns .card {
+    display: inline-block;
+    width: 100%;
+}
+
+.card-columns .card {
+    margin-bottom: .75rem;
+}
+
+.card-game{
+  border:0px!important;
+  border-top:  3px #0984e3 solid!important;
+}
+
+.card-divider{
+  border-top: 1px #efefef solid;
+  padding-top: 10px;
+}
+
+.sub-header{
+  display: block;
+  font-weight: bold;
+  color:#b5b5b5;
+}
+
+
+.box-shadow {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+}
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    color: rgba(255, 255, 255, .75);
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nav-underline .active {
+    font-weight: 500;
+    color: var(--gray-dark);
+}
+
+.nav-underline .nav-link {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: .875rem;
+    color: var(--secondary);
+}*/

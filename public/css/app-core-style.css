@@ -1,0 +1,46 @@
+body{
+    background-image: -moz-linear-gradient( 135deg, #11998e, #38ef7d);
+    background-image: -webkit-linear-gradient( 135deg, #11998e, #38ef7d);
+    background-image: -ms-linear-gradient( 135deg, #11998e, #38ef7d);
+    background-image: linear-gradient( 135deg, #11998e, #38ef7d);
+    background-attachment: fixed;
+
+    font-family: "https://fonts.googleapis.com/css?family=Rubik:300,400,500", sans-serif;
+
+    /*background-color: #f8f9fa!important;*/
+}
+
+a {
+    color: darkgrey;
+}
+
+li {
+    border-radius: 15px 15px 15px 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #F2F6F7;
+}
+
+li.nav-item.main-menu {
+    border-radius: 15px 15px 15px 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: rgba(242, 246, 247, 0);
+}
+
+.text-default {
+  color: #128273 !important;
+}
+
+input.form-control {
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500);@charset "UTF-8";/*!
+
