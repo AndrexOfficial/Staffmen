@@ -55,13 +55,13 @@ h1 {
 h2 {
     font-size: 45px;
     font-weight: 300;
-    color: #633991;
+    color: #11998e;
     letter-spacing: -1px;
     margin-bottom: 1rem;
 }
 
 h3 {
-    color: #633991;
+    color: #11998e;
     font-size: 33px;
     font-weight: 500;
 }
@@ -69,13 +69,13 @@ h3 {
 h4 {
     font-size: 20px;
     font-weight: 500;
-    color: #633991;
+    color: #11998e;
 }
 
 h5 {
     font-size: 28px;
     font-weight: 300;
-    color: #633991;
+    color: #11998e;
     margin-bottom: 0.7rem;
 }
 
@@ -105,7 +105,7 @@ p.lead {
 }
 
 .btn-outline-light:hover {
-    color: #d6619c;
+    color: #38ef7d;
 }
 
 .btn-primary {
@@ -282,10 +282,10 @@ header {
 ----------------------*/
 
 .gradient-fill:before {
-    color: #fc73b4;
-    background: -moz-linear-gradient(top, #9477b4 0%, #fc73b4 100%);
-    background: -webkit-linear-gradient(top, #9477b4 0%, #fc73b4 100%);
-    background: linear-gradient(to bottom, #9477b4 0%, #fc73b4 100%);
+    color: #11998e;
+    background: -moz-linear-gradient(top, #11998e 0%, #38ef7d 100%);
+    background: -webkit-linear-gradient(top, #11998e 0%, #38ef7d 100%);
+    background: linear-gradient(to bottom, #11998e 0%, #38ef7d 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -312,9 +312,9 @@ header {
     position: absolute;
     width: 3px;
     color: #fc73b4;
-    background: -moz-linear-gradient(top, #9477b4 0%, #fc73b4 100%);
-    background: -webkit-linear-gradient(top, #9477b4 0%, #fc73b4 100%);
-    background: linear-gradient(to bottom, #9477b4 0%, #fc73b4 100%);
+    background: -moz-linear-gradient(top, #11998e 0%, #38ef7d 100%);
+    background: -webkit-linear-gradient(top, #11998e 0%, #38ef7d 100%);
+    background: linear-gradient(to bottom, #11998e 0%, #38ef7d 100%);
     top: 0;
     bottom: 0;
     left: 0;
@@ -348,7 +348,7 @@ header {
     border-radius: 50%;
     margin-bottom: 1.5rem;
     background-color: #FFF;
-    color: #f5378e;
+    color: #38ef7d;
     font-size: 48px;
     text-align: center;
     line-height: 80px;
@@ -366,10 +366,10 @@ header {
 }
 
 .ui-steps li:hover .circle-icon {
-    background-image: -moz-linear-gradient( 122deg, #e6388e 0%, #fb378e 100%);
-    background-image: -webkit-linear-gradient( 122deg, #e6388e 0%, #fb378e 100%);
-    background-image: -ms-linear-gradient( 122deg, #e6388e 0%, #fb378e 100%);
-    background-image: linear-gradient( 122deg, #e6388e 0%, #fb378e 100%);
+    background-image: -moz-linear-gradient( 122deg, #11998e 0%, #38ef7d 100%);
+    background-image: -webkit-linear-gradient( 122deg, #11998e 0%, #38ef7d 100%);
+    background-image: -ms-linear-gradient( 122deg, #11998e 0%, #38ef7d 100%);
+    background-image: linear-gradient( 122deg, #11998e 0%, #38ef7d 100%);
     box-shadow: 0px 9px 32px 0px rgba(0, 0, 0, 0.09);
     color: #FFF;
 }
@@ -627,13 +627,13 @@ header {
     line-height: 50px;
     margin: 0 0.3rem;
     border-radius: 5px;
-    color: #f4c9e2;
+    color: #11998e;
     transition: all 0.3s ease;
 }
 
 .social-icons a:hover {
     text-decoration: none;
-    color: #e38cb7;
+    color: #38ef7d;
 }
 
 @media (max-width:991px) {
