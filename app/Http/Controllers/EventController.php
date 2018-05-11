@@ -17,6 +17,23 @@ class EventController extends Controller {
         return view('events.index', compact('events'));
     }
 
+    ///x app
+     public function appIndex()
+    {
+        $events = \App\Event::orderBy('id', 'local','title')->paginate(100);
+
+        return $events->toJson();
+    }
+
+///xapp
+    //  public function filter($category)
+    // {
+    //        //$recipes = Recipe::orderBy('id', 'desc')->paginate(10);
+    //        $recipes = \App\Event::where('category', '=', $category )->paginate(100);
+    //    return view('events.show')->with('events', $events);
+
+    // }
+
     public function attending() {
 
         $events = \Auth::user()->attending()->paginate(5);
@@ -174,6 +191,19 @@ class EventController extends Controller {
         return redirect('/events/' . $item->id)->with('success', 'Evento pubblicato correttamente!');
     }
 
+///x app
+    // public function appStore()
+    // {
+    //     $item = new Event;
+    //     $item->user_id = $_GET['user_id'];
+    //     $item->num_members = $_GET['num_members'];
+    //     $item->num_members_confirmed = $_GET['num_members_confirmed'];
+    //     $item->save();
+
+    //     return "ok";
+     
+    // }
+
     public function update(Request $request, $id) {
 
         $validator = \Validator::make($request->all(), [
@@ -210,5 +240,23 @@ class EventController extends Controller {
         $item->save();
         return redirect('/events/' . $item->id)->with('success', 'Evento aggiornato correttamente!');
     }
+
+// x app
+    // public function appUpdate()
+    // {
+    //     $item = Event::find($_GET['id']);
+    //     $item->user_id = $_GET['user_id'];
+    //     $item->num_members = $_GET['num_members']; 
+    //     $item->save(); 
+    //     return "ok"; 
+    // }
+
+// x app
+    // public function appDestroy($id)
+    // {
+    //     $item = Event::find($id);
+    //     $item -> delete();
+    //     return "ok";
+    // }
 
 }
