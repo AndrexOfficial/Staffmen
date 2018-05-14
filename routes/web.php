@@ -28,12 +28,19 @@ Route::post('/profile/edit', 'UserController@profile_update')->middleware('auth'
 Route::get('/requests', 'UserController@requests')->middleware('auth');
 Route::get('/invites', 'UserController@invites')->middleware('auth');
 
+
 Route::get('/events', 'EventController@index')->middleware('auth');
 Route::get('/my-events', 'EventController@myindex')->middleware('auth');
 Route::get('/attending', 'EventController@attending')->middleware('auth');
 Route::get('/pending', 'EventController@pending')->middleware('auth');
 
 Route::post('/events/{id}/message/send', 'EventController@store_message')->middleware('auth');
+
+///x App Request
+Route::get('api/events/index', 'EventController@appIndex');
+Route::get('events/appstore', 'EventController@appStore');
+Route::get('events/appdestroy/{id}', 'EventController@appDestroy');
+Route::get('events/appupdate/', 'EventController@appUpdate');
 
 Route::get('/events/new', 'EventController@create')->middleware('auth');
 Route::post('/events/new', 'EventController@store')->middleware('auth');

@@ -17,8 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('signup','Api\Userscontroller@signup');
-Route::post('login','Api\Userscontroller@login');
-Route::post('forget','Api\Userscontroller@forget');
-Route::get('password/reset/{token}', 'Api\Userscontroller@getReset');
 
+// Route::group(['namespace'=>'api'],function(){
+
+	Route::post('signup','Userscontroller@signup');
+	Route::post('login','Userscontroller@login');
+	Route::post('forget','Userscontroller@forget');
+	Route::get('password/reset/{token}', 'Userscontroller@getReset');
+
+	
+
+
+// });
