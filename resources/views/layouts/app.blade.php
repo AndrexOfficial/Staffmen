@@ -25,10 +25,11 @@
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="{{ URL::to('/events')}}">
-                <img src="images/logo-small.png" class="img-fluid" alt="logo">
-                <span></span> Staff<span class="text-muted">Men</span>
+                <img src="images/StaffLogoSmallB.png" class="img-fluid" alt="logo">
+                <span>StaffMen</span>
                  <sup><small class="text-muted"></small></sup>
               </a>
+
               <div class="d-flex order-lg-2 ml-auto">
                 <div class="dropdown d-flex">
                   <a class="nav-link icon" data-toggle="dropdown">

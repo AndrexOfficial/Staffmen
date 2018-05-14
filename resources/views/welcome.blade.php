@@ -248,10 +248,10 @@
             </div>
 
             <div class="img-gallery owl-carousel owl-theme">
-                <img src="images/screen1.jpg" alt="image">
-                <img src="images/screen2.jpg" alt="image">
-                <img src="images/screen3.jpg" alt="image">
-                <img src="images/screen1.jpg" alt="image">
+                <img src="images/screen10.png" alt="image">
+                <img src="images/screen11.png" alt="image">
+                <img src="images/screen12.png" alt="image">
+                <img src="images/screen13.png" alt="image">
             </div>
 
         </div>
