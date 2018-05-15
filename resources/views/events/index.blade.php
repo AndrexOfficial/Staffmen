@@ -82,7 +82,7 @@
                   @endphp
 
                     <div class="offset-md-10">
-                      <a href="{{url('events')}}/{{$event->id}}/delete" style="position: relative;top: -40px;border: none !important;"><i class="fe fe-trash"></i> Delete Eventi</a>
+                      <a href="{{ URL::to('/events/')}}/{{$event->id}}/delete" style="position: relative;top: -40px;border: none !important;"><i class="fe fe-trash"></i> Elimina Evento</a>
                     </div>
 
                     <a href="{{ URL::to('/events/')}}/{{$event->id}}" class="list-group-item list-group-item-action">
