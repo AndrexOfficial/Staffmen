@@ -37,7 +37,7 @@
                 </div>
               </form>
               <div class="text-center text-muted">
-                <p>Non hai ancora un account? <a href="/register">Registrati</a></p>
+                <p>Non hai ancora un account? <a href="{{url('register')}}">Registrati</a></p>
               </div>
               <div class="text-center text-muted">
                 <p><- Torna a <a href="/">Home</a></p>

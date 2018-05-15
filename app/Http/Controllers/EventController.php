@@ -17,6 +17,18 @@ class EventController extends Controller {
         return view('events.index', compact('events'));
     }
 
+    public function index_json() {
+
+     $events = \App\Event::where('date','>=', \Carbon\Carbon::now())->paginate(10);
+      return response()->json($events);
+   }
+
+    public function show_json($id) {
+ 
+      $event = \App\Event::find($id);
+      return response()->json($event);
+   }
+
     ///x app
      public function appIndex()
     {

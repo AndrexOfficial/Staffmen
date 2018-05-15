@@ -43,8 +43,8 @@
                       <label class="form-label">Tipo di profilo:</label>
                       <br/>
                       <select class="form-control" name="role">
-                        <option value="0">Steward</option>
-                        <option value="1">Organizzatore</option>
+                        <option value="1">Steward</option>
+                        <option value="2">Organizzatore</option>
                       </select>
                       <br/>
                     </div>
@@ -55,7 +55,7 @@
                   </div>
                 </form>
                 <div class="text-center text-muted">
-                  <p>Hai già un Account? <a href="/login">Log In</a></p>
+                  <p>Hai già un Account? <a href="{{url('login')}}">Log In</a></p>
                 </div>
               </div>
             </div>

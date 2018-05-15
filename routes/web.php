@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//API
+Route::get('/api/events/json', 'EventController@index_json');
+Route::get('/api/events/{id}/json', 'EventController@show_json');
+
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 Route::get('/markallasread', 'UserController@markallasread')->middleware('auth');

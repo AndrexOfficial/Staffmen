@@ -12,6 +12,9 @@ class UserController extends Controller {
 
     public function profile_member($id){
         $member = \App\User::find($id);
+        // echo "<pre>";
+        // print_r($member);
+        // exit;
         return view('user.profile_member', compact('member'));
     }
 
