@@ -106,6 +106,20 @@
             <textarea class="form-control" name="description" rows="3">{{$event->description}}</textarea>
           </div>
 
+          @if(\Auth::user()->role==1)
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-label">Status</label>
+                <select name="status" class="form-control">
+                  <option value="1" {{$event->status == '1' ? 'selected' : ''}}>Active</option>
+                  <option value="2" {{$event->status == '2' ? 'selected' : ''}}>In Active</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          @endif
       </div>
       <div class="card-footer text-right">
           <div class="d-flex">

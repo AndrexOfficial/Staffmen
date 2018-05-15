@@ -101,6 +101,15 @@
             <textarea class="form-control" name="description" rows="3"></textarea>
           </div>
 
+          @if(\Auth::user()->role==1)
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select name="status">
+              <option value="1">Active</option>
+              <option value="2">In Active</option>
+            </select>
+          </div>
+          @endif
       </div>
       <div class="card-footer text-right">
           <div class="d-flex">
