@@ -49,6 +49,7 @@ class Userscontroller extends Controller {
         $user = new User;
         $user->name = $request->get('name');
         $user->email = $request->get('email');
+        $user->token = $request->get('remember_token');
         $user->password = bcrypt($request->get('password'));
         $user->save();
 
@@ -74,6 +75,7 @@ class Userscontroller extends Controller {
 
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
+            $user->token = $request->get('remember_token');
             return json_encode(array('status' => true,'user' => $user,'msg' => "Login successfully"));
         }
         else{
