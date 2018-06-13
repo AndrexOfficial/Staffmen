@@ -67,14 +67,14 @@ class UserController extends Controller {
 
         if ($request->cv){
             $image = time() . '.' . $request->cv->getClientOriginalExtension();
-            $request->cv->move(public_path('images/curriculum'), $image);
+            $request->cv->move(public_path('images'), $image);
             $url = '/images/curriculum/' . $image;
             $user->resume = $url;
         }        
         if ($request->photo){
             $image = time() . '.' . $request->photo->getClientOriginalExtension();
-            $request->photo->move(public_path('images/profile'), $image);
-            $url = '/images/profile' . $image;
+            $request->photo->move(public_path('images'), $image);
+            $url = '/images/' . $image;
             $user->photo = $url;
         }
         $user->save();
