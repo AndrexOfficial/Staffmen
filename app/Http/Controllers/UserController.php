@@ -64,6 +64,12 @@ class UserController extends Controller {
         $user->sex = $request->sex;
         $user->descr = $request->descr;
         $user->prev_job = $request->job;
+        $user->tshirt_size = $request->tshirt_size;
+        $user->height = $request->height;
+        $user->hair = $request->hair;
+        $user->shoes_size = $request->shoes_size;
+        $user->eyes = $request->eyes;
+        
 
         if ($request->cv){
             $image = time() . '.' . $request->cv->getClientOriginalExtension();
@@ -76,6 +82,12 @@ class UserController extends Controller {
             $request->photo->move(public_path('images'), $image);
             $url = '/images/' . $image;
             $user->photo = $url;
+        }
+        if ($request->cover_photo){
+            $image = time() . '.' . $request->cover_photo->getClientOriginalExtension();
+            $request->cover_photo->move(public_path('images'), $image);
+            $url = '/images/cover/' . $image;
+            $user->cover_photo = $url;
         }
         $user->save();
         return redirect('/profile')->with('success', 'Evvai! Profilo aggiornato correttamente');
