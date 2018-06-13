@@ -19,7 +19,7 @@
     <li>
       <div class="col col_4 iamgurdeep-pic">
         <div class="coverImage">
-          <img class="img-responsive iamgurdeeposahan" alt="copertina" src="images/Prova.jpg">
+          <img class="img-responsive iamgurdeeposahan" alt="copertina" src="{{\Auth::user()->photo}}">
         </div>
         <div class="edit-pic">
           <a href="#" target="_blank" class="fa fa-facebook"></a>
@@ -61,11 +61,10 @@
           <li><a href="#"><i class="fa left-none"></i> Date of Birth : 03/09/1994</a></li>
           <li><a href="#">Address : {{\Auth::user()->location}}</a></li>
           <li><a href="#">Email : {{\Auth::user()->email}}</a></li>
-          <li><a href="#">Lavoro : {{\Auth::user()->prev_job}} 
+          <li><a href="#">Lavoro : {{\Auth::user()->prev_job}}</a></li>
                <!-- @foreach (\Auth::user()->jobs as $job)
                 <span class="tag">{{$job->name}}</span>
               @endforeach -->
-            </a></li>
           <li><a href="#">Età : {{\Auth::user()->age}}</a></li>
           <li><a href="#">Cell. : {{\Auth::user()->phone_number}}</a></li>
         </ul>
@@ -83,21 +82,14 @@
 
       <!-- Photo -->
       <li>
-        <div class="link"><i class="fa fa-picture-o"></i>Photos <small>1,120</small><i class="fa fa-chevron-down"></i></div>
+        <div class="link"><i class="fa fa-picture-o"></i>Dati Fisici <i class="fa fa-chevron-down"></i></div>
         <ul class="submenu">
-          <li class="photosgurdeep"><a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="{{\Auth::user()->photo}}">                 
-          </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="images/Prova.jpg">                 
-            </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="images/Prova.jpg">                 
-            </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="images/Prova.jpg">                 
-            </a>
-                 
-                  <a class="view-all" href="#" target="_blank" >15+
-              </a>
-                
-          </li>
+           <p class="mb-0"></p>
+          <li><a href="#">Taglia Maglietta : {{\Auth::user()->tshirt_size}}</a></li>
+          <li><a href="#">Altezza : {{\Auth::user()->height}}</a></li>
+          <li><a href="#">Colore dei capelli : {{\Auth::user()->hair}}</a></li>
+          <li><a href="#">Numero di scarpe : {{\Auth::user()->shoes_size}}</a></li>
+          <li><a href="#">Colore degli occhi : {{\Auth::user()->eyes}}</a></li>
         </ul>
       </li>
 
