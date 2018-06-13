@@ -19,6 +19,18 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('location')->nullable();
             $table->string('photo')->nullable();
+            $table->string('role')->nullable();
+            $table->integer('age')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->boolean('sex')->nullable();
+            $table->string('descr')->nullable();
+            $table->string('prev_job')->nullable();
+            $table->string('cover_photo')->nullable();
+            $table->string('tshirt_size')->nullable();
+            $table->string('height')->nullable();
+            $table->string('hair')->nullable();
+            $table->string('shoes_size')->nullable();
+            $table->string('eyes')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

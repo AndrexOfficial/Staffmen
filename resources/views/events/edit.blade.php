@@ -22,7 +22,7 @@
             </div>
         @endif
 
-          <div class="form-group">
+        <div class="form-group">
               <label class="form-label">Lavoro *</label>
               <div class="selectgroup selectgroup-pills">
                 <?php $checked = '';?>
@@ -38,7 +38,7 @@
                   </label>
                 @endforeach
               </div>
-            </div>
+            </div> 
 
           <div class="row">
             <div class="col-md-4">
@@ -100,6 +100,14 @@
             <label class="form-label">Titolo o Nome Evento </label>
             <input type="text" class="form-control" name="title" value="{{$event->title}}" placeholder="Title" >
           </div>
+
+          <div class="d-flex justify-content-start align-items-center">
+              <span class="avatar avatar-xxl mr-4" style="background-image: url({{$event->photo_event}})"></span>
+              <div class="form-group">
+                  <label for="exampleFormControlFile1">Foto Evento</label>
+                  <input type="file" name="photo_event" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+            </div>
 
           <div class="form-group">
             <label class="form-label">Descrizione</label>

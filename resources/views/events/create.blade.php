@@ -96,6 +96,8 @@
             <input type="text" class="form-control" name="title" placeholder="Titolo" >
           </div>
 
+          <span class="avatar avatar-xxl" style="background-image: url({{$event->photo_event}})"></span>
+
           <div class="form-group">
             <label class="form-label">Descrizione</label>
             <textarea class="form-control" name="description" rows="3"></textarea>

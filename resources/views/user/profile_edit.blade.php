@@ -22,6 +22,15 @@
                 </div>
             </div>
 
+             <div class="d-flex justify-content-start align-items-center">
+              <span class="avatar avatar-xxl mr-4" style="background-image: url({{\Auth::user()->cover_photo}})"></span>
+              <div class="form-group">
+                  <label for="exampleFormControlFile2">Foto cover</label>
+                  <input type="file" name="cover_photo" class="form-control-file" id="exampleFormControlFile2">
+                </div>
+            </div>
+            
+
             <div class="form-group mt-4">
               <label class="form-label">Nome e Cognome *</label>
               <input type="text" name="name" class="form-control" id="exampleInputEmail1" value="{{\Auth::user()->name}}" aria-describedby="emailHelp" placeholder="Inserisci il tuo nome" required>
@@ -50,6 +59,26 @@
           <div class="form-group mt-4">
               <label class="form-label">Numero di telefono </label>
               <input type="text" name="phone" class="form-control" value="{{\Auth::user()->phone_number}}" placeholder="Inserisci numero di telefono">
+          </div>
+            <div class="form-group mt-4">
+              <label class="form-label">T-Shirt size </label>
+              <input type="text" name="tshirt_size" class="form-control" value="{{\Auth::user()->tshirt_size}}" placeholder="Inserisci la taglia della tua maglia">
+          </div>
+           <div class="form-group mt-4">
+              <label class="form-label">Altezza</label>
+              <input type="text" name="height" class="form-control" value="{{\Auth::user()->height}}" placeholder="Inserisci l'altezza">
+          </div>
+           <div class="form-group mt-4">
+              <label class="form-label">Colore dei capelli </label>
+              <input type="text" name="hair" class="form-control" value="{{\Auth::user()->hair}}" placeholder="Inserisci il colore dei capelli ">
+          </div>
+           <div class="form-group mt-4">
+              <label class="form-label">Numero di scarpe</label>
+              <input type="text" name="shoes_size" class="form-control" value="{{\Auth::user()->shoes_size}}" placeholder="Inserisci il numero di scarpe">
+          </div>
+          <div class="form-group mt-4">
+              <label class="form-label">Colore degli occhi</label>
+              <input type="text" name="eyes" class="form-control" value="{{\Auth::user()->eyes}}" placeholder="Inserisci il colore degli occhi">
           </div>
           <div class="form-group mt-4">
               <label class="form-label">Sesso </label>
@@ -81,7 +110,6 @@
                 <input type="file" name="cv">
             </div>
           @endif
-          
 
         </div>
         <div class="card-footer text-right">
