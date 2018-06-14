@@ -1,7 +1,4 @@
-
-
 @extends('layouts.app')
-
 
 @section('content')
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -32,51 +29,26 @@
           <h3 class="mb-1">{{\Auth::user()->name}}</h3> 
           <small><i class="fa fa-map-marker"></i> {{\Auth::user()->location}}</small>
           <p><i class="fa fa-briefcase"></i> {{\Auth::user()->prev_job}}</p>
-          
-          
-           <a href="{{ URL::to('/profile/edit')}}" target="_blank" class="btn-o"><i class="fa fa-user-plus"></i>Modifica</a>
-              
-         
-          
-          
-           <ul class="nav navbar-nav">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-ellipsis-v pull-right"></span></a>
-                <ul class="dropdown-menu pull-right">
-                  <li><a href="#">Video Call <i class="fa fa-video-camera"></i></a></li>
-                  <li><a href="#">Poke <i class="fa fa-hand-o-right"></i></a></li>
-                  <li><a href="#">Report <i class="fa fa-bug"></i></a></li>
-                  <li><a href="#">Block <i class="fa fa-lock"></i></a></li>
-                </ul>
-              </li>
-            </ul>  
+
+           <a href="{{ URL::to('/profile/edit')}}" class="btn-o"><i class="fa fa-user-plus"></i>Modifica</a>
+
         </div>
       </div>   
       <!-- About -->
     </li>
       <li>
-        <div class="link"><i class="fa fa-globe"></i>About<i class="fa fa-chevron-down"></i></div>
+        <div class="link"><i class="fa fa-globe"></i>Dati Personali<i class="fa fa-chevron-down"></i></div>
         <ul class="submenu">
            <p class="mb-0"></p>
-          <li><a href="#"><i class="fa left-none"></i> Date of Birth : 03/09/1994</a></li>
-          <li><a href="#">Address : {{\Auth::user()->location}}</a></li>
+          <li><a href="#"><i class="fa left-none"></i> Data di nascita : 03/09/1994</a></li>
+          <li><a href="#">Indirizzo : {{\Auth::user()->location}}</a></li>
           <li><a href="#">Email : {{\Auth::user()->email}}</a></li>
           <li><a href="#">Lavoro : {{\Auth::user()->prev_job}}</a></li>
                <!-- @foreach (\Auth::user()->jobs as $job)
                 <span class="tag">{{$job->name}}</span>
               @endforeach -->
           <li><a href="#">Età : {{\Auth::user()->age}}</a></li>
-          <li><a href="#">Cell. : {{\Auth::user()->phone_number}}</a></li>
-        </ul>
-      </li>
-
-      <!-- Professional skills -->
-      <li class="default open">
-        <div class="link"><i class="fa fa-code"></i>Professional Skills<i class="fa fa-chevron-down"></i></div>
-        <ul class="submenu">
-          <li><a href="#"><span class="tags">Adobe Photoshop</span> <span class="tags">Corel Draw</span> <span class="tags">CSS</span> <span class="tags">Css 3</span> 
-                  <span class="tags">Graphic Design</span> <span class="tags">HTML</span> <span class="tags">HTML5</span> <span class="tags">JavaScript</span> 
-                  <span class="tags">Twitter bootstrap</span> <span class="tags">bootstrap</span> <span class="tags">User Interface Design</span> <span class="tags">Wordpress</span></li></a>
+          <li><a href="#">Telefono : {{\Auth::user()->phone_number}}</a></li>
         </ul>
       </li>
 
@@ -94,31 +66,14 @@
       </li>
 
       <!-- Past event -->
-      <li><div class="link"><i class="fa fa-users"></i>Past Events <small>1,053</small><i class="fa fa-chevron-down"></i></div>
-        <ul class="submenu">
-            <li class="photosgurdeep"><a href="#"><img class="img-responsive iamgurdeeposahan" alt="friends" src="{{\Auth::user()->photo}}">                 
-          </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="{{\Auth::user()->photo}}">                 
-            </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="{{\Auth::user()->photo}}">                 
-            </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="{{\Auth::user()->photo}}">                 
-            </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="{{\Auth::user()->photo}}">                 
-              </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="{{\Auth::user()->photo}}">                 
-            </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="{{\Auth::user()->photo}}">                 
-            </a>
-                  <a href="#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="{{\Auth::user()->photo}}">                 
-              </a>
-                  
-                 
-                  <a class="view-all" href="https://web.facebook.com/iamgurdeeposahan" target="_blank">50+
-              </a>
-                
-          </li>
-        </ul>
+      <li>
+<ul class="submenu">
+<div class="link"><i class="fa fa-users"></i>Past Events <small>1,053</small><i class="fa fa-chevron-down"></i></div>
+<select name="jobs[]" multiple class="form-control">
+@foreach (\App\Job::all() as $job)
+<option value="{{$job->id}}">{{$job->name}}</option>
+@endforeach
+</select>
       </li>
     </ul>
   </div>
@@ -129,10 +84,14 @@
 * {
     margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  -webkit-box-sizing: 100%;
+  -moz-box-sizing: 100%;
+  box-sizing: 100%;
 }
+            
+            .accordion {
+            width: 100%;
+            }
 
 .accordion li {
 background-color: transparent;
@@ -142,6 +101,7 @@ background-color: transparent;
     display: block;
     position: relative;
     height: 315px;
+    width: 100%;
     overflow: hidden;
     text-decoration: none;
   }
