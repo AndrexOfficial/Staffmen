@@ -19,21 +19,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
-        'location'=> $faker->name
-            // $table->string('photo')->nullable();
-            // $table->string('role')->nullable();
-            // $table->integer('age')->nullable();
-            // $table->string('phone_number')->nullable();
-            // $table->boolean('sex')->nullable();
-            // $table->string('descr')->nullable();
-            // $table->string('prev_job')->nullable();
-            // $table->string('cover_photo')->nullable();
-            // $table->string('tshirt_size')->nullable();
-            // $table->string('height')->nullable();
-            // $table->string('hair')->nullable();
-            // $table->string('shoes_size')->nullable();
-            // $table->string('eyes')->nullable();
-            // $table->string('password');
+        'location'=> $faker->streetAddress,
+        'photo' => $faker->imageUrl($width = 640, $height = 480),
+        'role' => $faker->name,
+        'age' => $faker->numberBetween($min = 10, $max = 90),
+        'phone_number' => $faker->phoneNumber,
+        'sex' => '1',
+        'descr' => $faker->sentence,
+        'prev_job' => $faker->jobTitle,
+        'cover_photo' => $faker->name,
+        'tshirt_size' => $faker->randomDigit,
+        'height' => $faker->numberBetween($min = 1,05, $max = 2,50),
+        'hair' => $faker->colorName,
+        'shoes_size' => $faker->randomDigit,
+        'eyes' => $faker->colorName,
         'remember_token' => str_random(10),
     ];
 });
