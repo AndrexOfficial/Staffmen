@@ -14,13 +14,11 @@
               <div class="col-md-3">
                 <h3 class="page-title mb-5">Eventi</h3>
                 <div>
-                  @if(\Auth::user()->role==2)
                   <div class="mb-6">
                     <a href="{{ URL::to('/events/new')}}" class="btn btn-primary btn-block">
                     <i class="fe fe-plus mr-2"></i> Crea Nuovo
                     </a>
                   </div>
-                  @endif
                   <div class="list-group list-group-transparent mb-6">
                     <a href="{{ URL::to('/events')}}" class="list-group-item list-group-item-action d-flex align-items-center @if(\Request::path()=='events') active @endif">
                       <span class="icon mr-3"><i class="fe fe-chevron-right"></i></span>
@@ -52,6 +50,7 @@
               <div class="col-md-9">
 
                 <div class="card">
+
                   <div class="card-header">
                     <h3 class="card-title"><b>
                       @if(\Request::path()=='events')
@@ -80,10 +79,6 @@
                       $event = $event->event;
                     }
                   @endphp
-
-                    <div class="offset-md-10">
-                      <a href="{{ URL::to('/events/')}}/{{$event->id}}/delete" style="position: relative;top: -40px;border: none !important;"><i class="fe fe-trash"></i> Elimina Evento</a>
-                    </div>
 
                     <a href="{{ URL::to('/events/')}}/{{$event->id}}" class="list-group-item list-group-item-action">
                       <div class="d-flex justify-content-start">
@@ -142,18 +137,9 @@
                     </a>
                 @endforeach
               </div>
-
             </div>
-
-
         {{ $events->links() }}
-
-
               </div>
             </div>
-
-
-  </div>
-
-
+</div>
 @endsection

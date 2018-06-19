@@ -22,23 +22,13 @@
             </div>
         @endif
 
-        <div class="form-group">
-              <label class="form-label">Lavoro *</label>
-              <div class="selectgroup selectgroup-pills">
-                <?php $checked = '';?>
-                @foreach ($jobs as $job)
-                    @if(!empty($job->id) && !empty($event->job->job_id))
-                      @if($job->id == $event->job->job_id)
-                          <?php $checked = 'checked';?>
-                      @endif
-                    @endif
-                  <label class="selectgroup-item">
-                    <input type="radio" name="job" value="{{$job->id}}" class="selectgroup-input"   <?php echo $checked; ?> >
-                    <span class="selectgroup-button">{{$job->name}}</span>
-                  </label>
-                @endforeach
-              </div>
-            </div> 
+<div class="d-flex justify-content-start align-items-center">
+<span class="avatar avatar-xxl mr-4" style="background-image: url({{\Auth::user()->event_photo}})"></span>
+<div class="form-group">
+<label for="exampleFormControlFile1">Cover Evento</label>
+<input type="file" name="event_photo" class="form-control-file" id="exampleFormControlFile1">
+</div>
+</div>
 
           <div class="row">
             <div class="col-md-4">
@@ -100,14 +90,6 @@
             <label class="form-label">Titolo o Nome Evento </label>
             <input type="text" class="form-control" name="title" value="{{$event->title}}" placeholder="Title" >
           </div>
-
-          <div class="d-flex justify-content-start align-items-center">
-              <span class="avatar avatar-xxl mr-4" style="background-image: url({{$event->photo_event}})"></span>
-              <div class="form-group">
-                  <label for="exampleFormControlFile1">Foto Evento</label>
-                  <input type="file" name="photo_event" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-            </div>
 
           <div class="form-group">
             <label class="form-label">Descrizione</label>

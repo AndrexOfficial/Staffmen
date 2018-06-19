@@ -14,22 +14,13 @@
           <form id="form" class="mt-4" method="post" action="{{url('/profile/edit')}}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-            <div class="d-flex justify-content-start align-items-center">
-              <span class="avatar avatar-xxl mr-4" style="background-image: url({{\Auth::user()->photo}})"></span>
-              <div class="form-group">
-                  <label for="exampleFormControlFile1">Foto del Profilo</label>
-                  <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-            </div>
-
-             <div class="d-flex justify-content-start align-items-center">
-              <span class="avatar avatar-xxl mr-4" style="background-image: url({{\Auth::user()->cover_photo}})"></span>
-              <div class="form-group">
-                  <label for="exampleFormControlFile2">Foto cover</label>
-                  <input type="file" name="cover_photo" class="form-control-file" id="exampleFormControlFile2">
-                </div>
-            </div>
-            
+<div class="d-flex justify-content-start align-items-center">
+<span class="avatar avatar-xxl mr-4" style="background-image: url({{\Auth::user()->photo}})"></span>
+<div class="form-group">
+<label for="exampleFormControlFile1">Foto del Profilo</label>
+<input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
+</div>
+</div>
 
             <div class="form-group mt-4">
               <label class="form-label">Nome e Cognome *</label>

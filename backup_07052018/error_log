@@ -1,1 +1,0 @@
-[19-Apr-2018 11:05:09 UTC] PHP Fatal error:  Trait 'App\Http\Controllers\Auth\AuthenticatesUsers' not found in /home/andreami/public_html/staffapp/app/Http/Controllers/IndexController.php on line 23

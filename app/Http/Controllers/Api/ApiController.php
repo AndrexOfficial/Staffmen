@@ -49,7 +49,7 @@ class ApiController extends Controller {
 
         $usercheck = User::where('email', $request->get('email'))->count();
         if ($usercheck > 0) {
-            return json_encode(array('status' => false,'msg'=>"This email id already exist with us!"));
+            return json_encode(array('status' => false,'msg'=>"Questa email è già registrata con un utente"));
         }
 
         $user = new User;
@@ -58,7 +58,7 @@ class ApiController extends Controller {
         $user->password = bcrypt($request->get('password'));
         $user->save();
 
-        return json_encode(array('status' => true,'user' => $user ,'msg' => 'Registered Successfully!'));                
+        return json_encode(array('status' => true,'user' => $user ,'msg' => "Registrazione OK"));                
     }
 
     public function login(Request $request){
@@ -75,15 +75,15 @@ class ApiController extends Controller {
         $email_count = User::where('email', $request->get('email'))->count();
         
         if($email_count==0){
-            return json_encode(array('status' => false,'msg' => "Email does not exists."));
+            return json_encode(array('status' => false,'msg' => "L'email inserita non è assegnata ad un utente esistente"));
         }
 
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
-            return json_encode(array('status' => true,'user' => $user,'msg' => "Login successfully"));
+            return json_encode(array('status' => true,'user' => $user,'msg' => "Login OK"));
         }
         else{
-           return json_encode(array('status' => false,'msg'=>"Incorrect Email or Password"));
+           return json_encode(array('status' => false,'msg'=>"Email o Password non corretti"));
         }         
     }
 
@@ -102,7 +102,7 @@ class ApiController extends Controller {
         $user = User::where('email', $request->email)->first();
 
         if ($user == null) {
-            return json_encode(array('status' => false,'msg' => 'Email can not be empty!'));
+            return json_encode(array('status' => false,'msg' => "L'email non può essere vuota!"));
         } else {
             // $to = $user->email;
             // $name = $user->name;
@@ -116,10 +116,10 @@ class ApiController extends Controller {
             });
 
             if($response){
-                return json_encode(array('status' => true,'msg'=>"Password Reset Email Sent Succesfully"));    
+                return json_encode(array('status' => true,'msg'=>"L'email di reset password è stata inviata con successo"));
             }
             else{
-                return json_encode(array('status' => false,'msg'=>"Mail could not be sent"));    
+                return json_encode(array('status' => false,'msg'=>"L'email di reset non può essere inviata"));
             }
             
         }
@@ -167,10 +167,10 @@ class ApiController extends Controller {
             });
 
             if($response){
-                return json_encode(array('status' => true,'msg'=>"Password Reset Email Sent Succesfully"));    
+                return json_encode(array('status' => true,'msg'=>"L'email di reset password è stata inviata con successo"));
             }
             else{
-                return json_encode(array('status' => false,'msg'=>"Mail could not be sent"));    
+                return json_encode(array('status' => false,'msg'=>"L'email di reset non può essere inviata"));
             }
             
         }
@@ -186,8 +186,8 @@ class ApiController extends Controller {
                     'members_confirmed' => 'required|integer',
                     'local' => 'required',
                     'event_date' => 'required|date',
-                    'time_start' => 'required|date_format:H:i',
-                    'time_end' => 'required|date_format:H:i',
+                    'time_start' => 'required',
+                    'time_end' => 'required',
                     'cost' => 'required',
         ]);
 
@@ -261,7 +261,7 @@ class ApiController extends Controller {
             return json_encode(array('status' => true,'msg'=>"Evento aggiornato correttamente!"));
         }
         else{
-            return json_encode(array('status' => false,'msg'=>"Evento not exists!"));   
+            return json_encode(array('status' => false,'msg'=>"Evento non esistente!"));
         }
 
            
@@ -272,10 +272,10 @@ class ApiController extends Controller {
 
         if($event) {
             $event->delete();
-            return json_encode(array('status' => true,'msg'=>"Event deleted succesfully!")); 
+            return json_encode(array('status' => true,'msg'=>"Evento cancellato con successo!"));
         }        
         else{
-            return json_encode(array('status' => false,'msg'=>"Event not exists!")); 
+            return json_encode(array('status' => false,'msg'=>"Evento non esistente!"));
         }
         
     }
@@ -299,10 +299,10 @@ class ApiController extends Controller {
         $event = \App\EventMember::find($request->id);
         if($event) {
             $event->delete();
-            return json_encode(array('status' => true,'msg'=>"User removed from Event succesfully!")); 
+            return json_encode(array('status' => true,'msg'=>"Utente rimosso dall'evento con successo!")); 
         }        
         else{
-            return json_encode(array('status' => false,'msg'=>"Event not exists!")); 
+            return json_encode(array('status' => false,'msg'=>"Evento non esistente!"));
         }
     }
 }

@@ -69,25 +69,18 @@ class UserController extends Controller {
         $user->hair = $request->hair;
         $user->shoes_size = $request->shoes_size;
         $user->eyes = $request->eyes;
-        
 
         if ($request->cv){
             $image = time() . '.' . $request->cv->getClientOriginalExtension();
             $request->cv->move(public_path('images'), $image);
-            $url = '/images/curriculum/' . $image;
+            $url = 'public/images/curriculum/' . $image;
             $user->resume = $url;
         }        
         if ($request->photo){
             $image = time() . '.' . $request->photo->getClientOriginalExtension();
             $request->photo->move(public_path('images'), $image);
-            $url = '/images/' . $image;
+            $url = 'public/images/' . $image;
             $user->photo = $url;
-        }
-        if ($request->cover_photo){
-            $image = time() . '.' . $request->cover_photo->getClientOriginalExtension();
-            $request->cover_photo->move(public_path('images'), $image);
-            $url = '/images/cover/' . $image;
-            $user->cover_photo = $url;
         }
         $user->save();
         return redirect('/profile')->with('success', 'Evvai! Profilo aggiornato correttamente');

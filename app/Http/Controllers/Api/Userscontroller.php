@@ -43,7 +43,7 @@ class Userscontroller extends Controller {
 
         $usercheck = User::where('email', $request->get('email'))->count();
         if ($usercheck > 0) {
-            return json_encode(array('status' => false,'msg'=>"This email id already exist with us!"));
+            return json_encode(array('status' => false,'msg'=>"Questa email è già registrata con un utente!"));
         }
 
         $user = new User;
@@ -53,7 +53,7 @@ class Userscontroller extends Controller {
         $user->password = bcrypt($request->get('password'));
         $user->save();
 
-        return json_encode(array('status' => true,'user' => $user ,'msg' => 'Registered Successfully!'));                
+        return json_encode(array('status' => true,'user' => $user ,'msg' => "Registrazione OK!"));
     }
 
     public function login(Request $request){
@@ -70,16 +70,16 @@ class Userscontroller extends Controller {
         $email_count = User::where('email', $request->get('email'))->count();
         
         if($email_count==0){
-            return json_encode(array('status' => false,'msg' => "Email does not exists."));
+            return json_encode(array('status' => false,'msg' => "L'email inserita non è assegnata ad un utente esistente"));
         }
 
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
             $user->token = $request->get('remember_token');
-            return json_encode(array('status' => true,'user' => $user,'msg' => "Login successfully"));
+            return json_encode(array('status' => true,'user' => $user,'msg' => "Login OK"));
         }
         else{
-           return json_encode(array('status' => false,'msg'=>"Incorrect Email or Password"));
+           return json_encode(array('status' => false,'msg'=>"Email o Password non corretti"));
         }         
     }
 
@@ -98,7 +98,7 @@ class Userscontroller extends Controller {
         $user = User::where('email', $request->email)->first();
 
         if ($user == null) {
-            return json_encode(array('status' => false,'msg' => 'Email can not be empty!'));
+            return json_encode(array('status' => false,'msg' => "L'email non può essere vuota!"));
         } else {
             // $to = $user->email;
             // $name = $user->name;
@@ -112,10 +112,10 @@ class Userscontroller extends Controller {
             });
 
             if($response){
-                return json_encode(array('status' => true,'msg'=>"Password Reset Email Sent Succesfully"));    
+                return json_encode(array('status' => true,'msg'=>"L'email di reset password è stata inviata con successo"));
             }
             else{
-                return json_encode(array('status' => false,'msg'=>"Mail could not be sent"));    
+                return json_encode(array('status' => false,'msg'=>"L'email di reset non può essere inviata"));
             }
             
         }
@@ -163,10 +163,10 @@ class Userscontroller extends Controller {
             });
 
             if($response){
-                return json_encode(array('status' => true,'msg'=>"Password Reset Email Sent Succesfully"));    
+                return json_encode(array('status' => true,'msg'=>"L'email di reset password è stata inviata con successo"));
             }
             else{
-                return json_encode(array('status' => false,'msg'=>"Mail could not be sent"));    
+                return json_encode(array('status' => false,'msg'=>"L'email di reset non può essere inviata"));
             }
             
         }
