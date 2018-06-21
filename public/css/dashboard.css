@@ -4231,7 +4231,7 @@ input[type=text]:focus {
   background-clip: border-box;
   border: 1px solid rgba(0, 40, 100, 0.12);
   border-radius: 25px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .card > hr {
