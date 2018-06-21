@@ -107,7 +107,7 @@
                               <span class="avatar avatar-gray">{{$event->num_members  - ($event->attending->count() + $event->num_members_confirmed) }}</span>
                               <small style="font-size:10px" class="text-muted"><b>POSTI RIMASTI</b></small>
                             </div>
-                            @if($event->user->id == \Auth::user()->id)
+                            @if($event->user_id == \Auth::user()->id)
                               <div class="d-flex align-items-center ml-5">
                                 <span class="status-icon bg-secondary"></span>
                                 <small class="text-muted"><b>Il tuo evento</b></small>

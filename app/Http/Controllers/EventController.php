@@ -8,6 +8,7 @@
         
         public function index() {
             $events = \App\Event::where('date', '>=', \Carbon\Carbon::now())->paginate(5);
+
             return view('events.index', compact('events'));
         }
         
@@ -197,8 +198,8 @@
             }
             if ($request->event_photo){
                 $image = time() . '.' . $request->event_photo->getClientOriginalExtension();
-                $request->event_photo->move(public_path('images'), $image);
-                $url = 'public/images/event_covers' . $image;
+                $request->event_photo->move(public_path('images/event_covers/'), $image);
+                $url = 'public/images/event_covers/' . $image;
                 $item->event_photo = $url;
             }
                 $item->save();
@@ -243,13 +244,20 @@
                     $item->description = $request->description;
                 }
                 if ($request->event_photo){
+
+                    if($item->event_photo!=''){
+                        $path = 'public/images/event_covers/' . $item->event_photo;
+                        if (file_exists($path)) {
+                            unlink($path);
+                        }
+                    }
                     $image = time() . '.' . $request->event_photo->getClientOriginalExtension();
-                    $request->event_photo->move(public_path('images'), $image);
-                    $url = 'public/images/event_covers' . $image;
+                    $request->event_photo->move(public_path('images/event_covers/'), $image);
+                    $url = 'public/images/event_covers/' . $image;
                     $item->event_photo = $url;
                 }
                     $item->save();
-                    return redirect('/events/' . $item->id)->with('success', 'Evento aggiornato correttamente!');
+                    return redirect('/events/')->with('success', 'Evento aggiornato correttamente!');
                 }
                 
                 public function delete(Request $request, $id) {
@@ -257,13 +265,18 @@
                     // if(\Auth::user()->role==1){
                     //     return back();
                     // }
-                    
+
                     $event = \App\Event::find($id);
                     
                     if($event) {
-                        return $event->delete();
+                        if($event->user_id==\Auth::user()->id){
+                            $event->delete();    
+                        }
+                        else{
+                            return redirect('/events/')->with('error', 'No! You can not cancel this event');        
+                        }                        
                     }
-                    return back();
+                    return redirect('/events/')->with('success', 'Yeah! Evento cancellato correttamente');
                 }
                 
     }

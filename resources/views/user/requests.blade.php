@@ -28,7 +28,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <div>
                Hai mandato una richiesta di partecipare all'evento
-               <a href="/events/{{$request->game->id}}"></a>
+               <a href="{{url('/events')}}/{{$request->event->id}}"></a>
                <br>
                <small class="text-muted">
                  {{\Carbon\Carbon::parse($request->created_at)->diffforhumans()}}

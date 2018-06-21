@@ -14,7 +14,7 @@
       </div>
       <div class="card-body">
         <div class="d-flex justify-content-start">
-          <span class="avatar avatar-xxl" style="background-image: url({{$member->photo}})"></span>
+          <span class="avatar avatar-xxl" style="background-image: url({{\Auth::user()->photo}})"></span>
           <div class="ml-4">
             <h3 class="mb-1">{{$member->name}}</h3>
             @if($member->location)
@@ -27,13 +27,13 @@
         </div>
       </div>
         <div class="col-md-12">
-            <h4>Email : {{$member->email}}</h4>
+            <h5>Email: {{$member->email}}</h5>
         </div>
         <div class="col-md-12">
-            <h4>Location : {{$member->location}}</h4>
+            <h5>Indirizzo: {{$member->location}}</h5>
         </div>
         <div class="col-md-12">
-            <h4>Registered As : @if($member->role==1)Steward @else Host @endif</h4>
+            <h5>Registrato come: @if($member->role==1)Steward @else Organizzatore @endif</h5>
         </div>
 
     </div>

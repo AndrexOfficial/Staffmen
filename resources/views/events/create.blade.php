@@ -8,7 +8,7 @@
       <div class="card-header">
         <h3 class="card-title">Crea Nuovo Evento</h3>
       </div>
-      <form method="post" action="{{url('/events/new')}}">
+      <form method="post" action="{{url('/events/new')}}" enctype="multipart/form-data">
         {{ csrf_field() }}
       <div class="card-body">
 

@@ -305,4 +305,79 @@ class ApiController extends Controller {
             return json_encode(array('status' => false,'msg'=>"Evento non esistente!"));
         }
     }
+
+    public function profile(Request $request){
+        $validator = \Validator::make($request->all(), [
+            'id'    =>  'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            $messages = $validator->messages()->toArray();
+            return json_encode(array('status' => false,'msg'=>$messages));    
+        }
+        $user = \App\User::find($request->id);
+
+        return json_encode(array('status' => true,'data'=>$user)); 
+
+    }
+
+    public function profileupdate(Request $request){
+
+        // return dd($request->all());
+
+        $validator = \Validator::make($request->all(), [
+                    'name' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            $messages = $validator->messages()->toArray();
+            return json_encode(array('status' => false,'msg'=>$messages));    
+        }
+
+        $user = User::find($request->user_id);
+        $user->name = $request->name;
+
+        if($request->location){
+            $user->location = $request->location;
+        }
+
+        // if($request->jobs){
+        //     foreach ($request->jobs as $job) {
+        //         $user->jobs()->attach($job);
+        //     }
+        // }
+        $user->age = $request->age;
+        $user->phone_number = $request->phone;
+        $user->sex = $request->sex;
+        $user->descr = $request->descr;
+        $user->prev_job = $request->job;
+        $user->tshirt_size = $request->tshirt_size;
+        $user->height = $request->height;
+        $user->hair = $request->hair;
+        $user->shoes_size = $request->shoes_size;
+        $user->eyes = $request->eyes;
+
+        if ($request->cv){
+            $image = time() . '.' . $request->cv->getClientOriginalExtension();
+            $request->cv->move(public_path('images'), $image);
+            $url = 'public/images/curriculum/' . $image;
+            $user->resume = $url;
+        }        
+        if ($request->photo){
+            $image = time() . '.' . $request->photo->getClientOriginalExtension();
+            $request->photo->move(public_path('images'), $image);
+            $url = 'public/images/' . $image;
+            $user->photo = $url;
+        }
+
+        $user->save();
+
+        if($user) {
+            return json_encode(array('status' => true,'msg'=>"Evvai! Profilo aggiornato correttamente")); 
+        }        
+        else{
+            return json_encode(array('status' => false,'msg'=>"Profilo non esistente!"));
+        }
+        
+    }
 }

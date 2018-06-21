@@ -40,3 +40,6 @@ Route::post('editevent', 'Api\ApiController@editevent');
 Route::post('joinevent', 'Api\ApiController@joinevent');
 Route::post('disjoinevent', 'Api\ApiController@disjoinevent');
 
+Route::post('profile', 'Api\ApiController@profile');
+Route::post('profileupdate', 'Api\ApiController@profileupdate');
+

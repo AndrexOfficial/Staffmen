@@ -30,9 +30,9 @@
                <span class="avatar" style="background-image: url({{$request->event->user->photo}})"></span>
                <div class="ml-3 d-flex flex-column justify-content-between">
                  <div>
-                   <a href="/player/{{$request->event->user->id}}"><b>{{$request->event->user->name}}</b></a>
+                   <a href="{{url('/member')}}/{{$request->event->user->id}}"><b>{{$request->event->user->name}}</b></a>
                  ti ha mandato un invito a partecipare all'evento 
-                 <a href="/events/{{$request->event->id}}"></a>
+                 <a href="{{url('/member')}}/{{$request->event->id}}"></a>
                </div>
                  <small class="text-muted">
                    {{\Carbon\Carbon::parse($request->created_at)->diffforhumans()}}
@@ -53,12 +53,12 @@
               </button>
               <div class="dropdown-menu">
                 @if($request->state==0)
-                  <a class="dropdown-item" href="/events/{{$request->event->id}}/player/{{$request->id}}/accept">Accetta</a>
-                  <a class="dropdown-item" href="/events/{{$request->event->id}}/player/{{$request->id}}/reject">Rifiuta</a>
+                  <a class="dropdown-item" href="{{url('/events')}}/{{$request->event->id}}/member/{{$request->id}}/accept">Accetta</a>
+                  <a class="dropdown-item" href="{{url('/events')}}/{{$request->event->id}}/member/{{$request->id}}/reject">Rifiuta</a>
                 @elseif($request->state==1)
-                  <a class="dropdown-item" href="/events/{{$request->event->id}}/player/{{$request->id}}/reject">Rifiuta</a>
+                  <a class="dropdown-item" href="{{url('/events')}}/{{$request->event->id}}/member/{{$request->id}}/reject">Rifiuta</a>
                 @elseif($request->state==2)
-                  <a class="dropdown-item" href="/events/{{$request->event->id}}/player/{{$request->id}}/accept">Accetta</a>
+                  <a class="dropdown-item" href="{{url('/events')}}/{{$request->event->id}}/member/{{$request->id}}/accept">Accetta</a>
                 @endif
               </div>
           </div>

@@ -33,7 +33,7 @@
     <link href="plugins/maps-google/plugin.css" rel="stylesheet" />
     <script src="plugins/maps-google/plugin.js"></script>
     <!-- Input Mask Plugin -->
-    <script src="plugins/input-mask/plugin.js"></script>
+    <!-- <script src="plugins/input-mask/plugin.js"></script> -->
   </head>
   <body class="">
     <div class="page">

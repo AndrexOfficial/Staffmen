@@ -51,7 +51,7 @@
                     @endif
                     @foreach (\Auth::user()->unreadNotifications as $notification)
                       @if($notification->type == 'App\Notifications\Join')
-                        <a href="{{ URL::to('/events/')}}{{\App\Game::find($notification->data['event_id'])->id}}" class="dropdown-item d-flex">
+                        <a href="{{ URL::to('/events/')}}/{{\App\Event::find($notification->data['event_id'])->id}}" class="dropdown-item d-flex">
                           <span class="avatar mr-3 align-self-center" style="background-image: url({{\App\User::find($notification->data['user_id'])->photo}})"></span>
                           <div>
                             <strong>{{\App\User::find($notification->data['user_id'])->name}}</strong> ti ha inviato una richiesta di partecipazione all'evento.
@@ -67,18 +67,18 @@
                           </div>
                         </a>
                       @elseif($notification->type == 'App\Notifications\Accepted')
-                        <a href="{{ URL::to('/events/')}}{{\App\Game::find($notification->data['event_id'])->id}}" class="dropdown-item d-flex">
-                          <span class="avatar mr-3 align-self-center" style="background-image: url({{\App\Game::find($notification->data['event_id'])->user->photo}})"></span>
+                        <a href="{{ URL::to('/events/')}}/{{\App\Event::find($notification->data['event_id'])->id}}" class="dropdown-item d-flex">
+                          <span class="avatar mr-3 align-self-center" style="background-image: url({{\App\Event::find($notification->data['event_id'])->user->photo}})"></span>
                           <div>
-                            <strong>{{\App\Game::find($notification->data['event_id'])->user->name}}</strong> ha accettato la tua richiesta di partecipazione all'evento
+                            <strong>{{\App\Event::find($notification->data['event_id'])->user->name}}</strong> ha accettato la tua richiesta di partecipazione all'evento
                             <div class="small text-muted">{{\Carbon\Carbon::parse($notification->created_at)->diffforhumans()}}</div>
                           </div>
                         </a>
                       @elseif($notification->type == 'App\Notifications\Rejected')
-                        <a href="{{ URL::to('/events/')}}{{\App\Game::find($notification->data['event_id'])->id}}" class="dropdown-item d-flex">
-                          <span class="avatar mr-3 align-self-center" style="background-image: url({{\App\Game::find($notification->data['event_id'])->user->photo}})"></span>
+                        <a href="{{ URL::to('/events/')}}/{{\App\Event::find($notification->data['event_id'])->id}}" class="dropdown-item d-flex">
+                          <span class="avatar mr-3 align-self-center" style="background-image: url({{\App\Event::find($notification->data['event_id'])->user->photo}})"></span>
                           <div>
-                            <strong>{{\App\Game::find($notification->data['event_id'])->user->name}}</strong> ha rifiutato la tua richiesta di partecipazione all'evento
+                            <strong>{{\App\Event::find($notification->data['event_id'])->user->name}}</strong> ha rifiutato la tua richiesta di partecipazione all'evento
                             <div class="small text-muted">{{\Carbon\Carbon::parse($notification->created_at)->diffforhumans()}}</div>
                           </div>
                         </a>

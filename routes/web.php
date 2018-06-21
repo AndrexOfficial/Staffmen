@@ -20,6 +20,7 @@ Auth::routes();
 //API
 Route::get('/api/events/json', 'EventController@index_json');
 Route::get('/api/events/{id}/json', 'EventController@show_json');
+Route::get('/api/events/{id}/delete', 'EventController@deleteevent');
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
@@ -51,6 +52,8 @@ Route::post('/events/new', 'EventController@store')->middleware('auth');
 Route::get('/events/{id}', 'EventController@show')->middleware('auth');
 Route::get('/events/{id}/edit', 'EventController@edit')->middleware('auth');
 Route::post('/events/{id}/edit', 'EventController@update')->middleware('auth');
+Route::get('/events/{id}/delete', 'EventController@delete')->middleware('auth');
+Route::post('/events/{id}/delete', 'EventController@update')->middleware('auth');
 Route::get('/events/{id}/invite', 'EventController@invite')->middleware('auth');
 Route::get('/events/{id}/invite/{member_id}', 'EventController@invite_member')->middleware('auth');
 Route::get('/events/{id}/join', 'EventController@join')->middleware('auth');

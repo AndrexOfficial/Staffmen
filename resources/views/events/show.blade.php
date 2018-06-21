@@ -8,15 +8,15 @@
     <div class="row">
               <div class="col-md-3">
                 <h3 class="page-title mb-5">Evento</h3>
-                @if(\Auth::user()->id != $event->user->id)
+                @if(\Auth::user()->id != $event->user_id)
                     @if($event->members->where('user_id',\Auth::user()->id)->count()==0)
-                      <a href="/events/{{$event->id}}/join" class="btn btn-primary btn-block mb-6"><i class="fe fe-send"></i> &nbsp; Richiedi di Unirti</a>
+                      <a href="{{url('/events')}}/{{$event->id}}/join" class="btn btn-primary btn-block mb-6"><i class="fe fe-send"></i> &nbsp; Richiedi di Unirti</a>
                     @else
                       @if($event->members->where('user_id',\Auth::user()->id)->first())
                         @if($event->members->where('user_id',\Auth::user()->id)->first()->state==0)
                           <div class="btn btn-azure btn-block mb-6 " >In Attesa di Risposta</div>
                         @elseif($event->members->where('user_id',\Auth::user()->id)->first()->state==1)
-                            <div class="btn btn-green btn-block mb-6 " >Attending</div>
+                            <div class="btn btn-green btn-block mb-6 " >Sto Partecipando</div>
                           @elseif($event->members->where('user_id',\Auth::user()->id)->first()->state==2)
                               <div class="btn btn-red btn-block mb-6 " >Rifiutato</div>
                         @endif
@@ -64,7 +64,7 @@
 
                   <div class="card-header">
                     <h3 class="card-title"><b>Dettagli Evento</b></h3>
-                    @if($event->user->id == \Auth::user()->id)
+                    @if($event->user_id == \Auth::user()->id)
                       <div class="card-options">
                         <a href="{{url('/events')}}/{{$event->id}}/edit" class="btn btn-secondary btn-sm ml-2"><i class="fe fe-edit mr-2"></i>Modifica</a>
                       </div>
@@ -123,7 +123,7 @@
                                 <div class="d-flex align-items-center mt-auto">
                                   <div class="avatar avatar-md mr-3" style="background-image: url({{$event->photo}})"></div>
                                   <div>
-                                    <a href="{{url('member')}}/{{$event->user->id}}" class="text-default"><b>{{$event->user->name}}</b></a> + {{$event->num_members_confirmed -1}}
+                                    <a href="{{url('/member')}}/{{$event->user_id}}" class="text-default"><b>{{$event->user->name}}</b></a> + {{$event->num_members_confirmed -1}}
                                     @if($event->user->location)
                                       <small class="d-block text-muted">{{$event->user->location}}</small>
                                     @endif
@@ -145,7 +145,7 @@
                                   <div class="d-flex align-items-center mt-auto">
                                     <div class="avatar avatar-md mr-3" style="background-image: url({{$member->photo}})"></div>
                                     <div>
-                                      <a href="/member/{{$member->user->id}}" class="text-default"><b>{{$member->user->name}}</b></a>
+                                      <a href="{{url('/member')}}/{{$member->user->id}}" class="text-default"><b>{{$member->user->name}}</b></a>
                                       @if($member->user->location)
                                         <small class="d-block text-muted">{{$member->user->location}}</small>
                                       @endif
@@ -159,7 +159,7 @@
                                      Gestisci
                                   </button>
                                   <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/events/{{$event->id}}/member/{{$member->id}}/reject">Rifiuta</a>
+                                    <a class="dropdown-item" href="{{url('/events')}}/{{$event->id}}/member/{{$member->id}}/reject">Rifiuta</a>
                                   </div>
                                 </div>
                               @endif
@@ -186,7 +186,7 @@
                                   <div class="d-flex align-items-center mt-auto">
                                     <div class="avatar avatar-md mr-3" style="background-image: url({{$member->photo}})"></div>
                                     <div>
-                                      <a href="/member/{{$member->user->id}}" class="text-default"><b>{{$member->user->name}}</b></a>
+                                      <a href="{{url('/member')}}/{{$member->user->id}}" class="text-default"><b>{{$member->user->name}}</b></a>
                                       @if($member->user->location)
                                         <small class="d-block text-muted">{{$member->user->location}}</small>
                                       @endif
@@ -200,7 +200,7 @@
                                      Manage
                                   </button>
                                   <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/events/{{$event->id}}/member/{{$member->id}}/accept">Accetta</a>
+                                    <a class="dropdown-item" href="{{url('/events')}}/{{$event->id}}/member/{{$member->id}}/accept">Accetta</a>
                                   </div>
                               </div>
                               @endif
@@ -227,7 +227,7 @@
                                   <div class="d-flex align-items-center mt-auto">
                                     <div class="avatar avatar-md mr-3" style="background-image: url({{$member->photo}})"></div>
                                     <div>
-                                      <a href="/member/{{$member->user->id}}" class="text-default"><b>{{$member->user->name}}</b></a>
+                                      <a href="{{url('/member')}}/{{$member->user->id}}" class="text-default"><b>{{$member->user->name}}</b></a>
                                       @if($member->user->location)
                                         <small class="d-block text-muted">{{$member->user->location}}</small>
                                       @endif
@@ -241,8 +241,8 @@
                                        Gestisci
                                     </button>
                                     <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="/events/{{$event->id}}/member/{{$member->id}}/accept">Accetta</a>
-                                      <a class="dropdown-item" href="/events/{{$event->id}}/member/{{$member->id}}/reject">Rifiuta</a>
+                                      <a class="dropdown-item" href="{{url('/events')}}/{{$event->id}}/member/{{$member->id}}/accept">Accetta</a>
+                                      <a class="dropdown-item" href="{{url('/events')}}/{{$event->id}}/member/{{$member->id}}/reject">Rifiuta</a>
                                     </div>
                                 </div>
                               @endif

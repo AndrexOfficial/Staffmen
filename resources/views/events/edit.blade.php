@@ -7,11 +7,11 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Modifica Evento</h3>
+<a href="{{url('events')}}/{{$event->id}}/delete">Elimina Evento<span class="glyphicon glyphicon-trash"></span></a>
       </div>
-      <form method="post" action="{{url('events')}}/{{$event->id}}/edit">
+      <form method="post" action="{{url('events')}}/{{$event->id}}/edit" enctype="multipart/form-data">
         {{ csrf_field() }}
       <div class="card-body">
-
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -113,7 +113,7 @@
       </div>
       <div class="card-footer text-right">
           <div class="d-flex">
-            <a href="/events/{{$event->id}}" class="btn btn-link">Cancella</a>
+            <a href="{{url('events')}}/{{$event->id}}" class="btn btn-link">Cancella</a>
             <button type="submit" class="btn btn-primary ml-auto">Aggiorna Ora</button>
           </div>
         </div>
