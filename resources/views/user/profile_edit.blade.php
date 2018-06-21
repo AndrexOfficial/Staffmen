@@ -15,7 +15,7 @@
             {{ csrf_field() }}
 
 <div class="d-flex justify-content-start align-items-center">
-<span class="avatar avatar-xxl mr-4" style="background-image: url({{\Auth::user()->photo}})"></span>
+<span class="avatar avatar-xxl mr-4" style="background-image: url({{asset(\Auth::user()->photo)}})"></span>
 <div class="form-group">
 <label for="exampleFormControlFile1">Foto del Profilo</label>
 <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">

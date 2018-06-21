@@ -320,7 +320,7 @@ class ApiController extends Controller {
         return json_encode(array('status' => true,'data'=>$user)); 
 
     }
-
+    //Profile API
     public function profileupdate(Request $request){
 
         // return dd($request->all());

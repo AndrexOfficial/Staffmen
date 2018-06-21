@@ -20,7 +20,14 @@ Auth::routes();
 //API
 Route::get('/api/events/json', 'EventController@index_json');
 Route::get('/api/events/{id}/json', 'EventController@show_json');
-Route::get('/api/events/{id}/delete', 'EventController@deleteevent');
+Route::post('/api/events/{id}/delete', 'EventController@deleteevent');
+Route::post('createevent', 'Api\ApiController@createevent');
+Route::post('deleteevent', 'Api\ApiController@deleteevent');
+Route::post('editevent', 'Api\ApiController@editevent');
+Route::post('joinevent', 'Api\ApiController@joinevent');
+Route::post('disjoinevent', 'Api\ApiController@disjoinevent');
+Route::post('profile', 'Api\ApiController@profile');
+Route::post('profileupdate', 'Api\ApiController@profileupdate');
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 

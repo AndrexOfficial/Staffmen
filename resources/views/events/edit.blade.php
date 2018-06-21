@@ -23,7 +23,7 @@
         @endif
 
 <div class="d-flex justify-content-start align-items-center">
-<span class="avatar avatar-xxl mr-4" style="background-image: url({{\Auth::user()->event_photo}})"></span>
+<span class="avatar avatar-xxl mr-4" style="background-image: url({{asset($event->event_photo)}})"></span>
 <div class="form-group">
 <label for="exampleFormControlFile1">Cover Evento</label>
 <input type="file" name="event_photo" class="form-control-file" id="exampleFormControlFile1">

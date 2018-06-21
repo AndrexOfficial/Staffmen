@@ -33,6 +33,13 @@
                 @endforeach
               </div>
             </div>
+<div class="d-flex justify-content-start align-items-center">
+<span class="avatar avatar-xxl mr-4" style="background-image: url({{\Auth::user()->event_photo}})"></span>
+<div class="form-group">
+<label for="exampleFormControlFile1">Cover Evento</label>
+<input type="file" name="event_photo" class="form-control-file" id="exampleFormControlFile1">
+</div>
+</div>
 
           <div class="row">
             <div class="col-md-4">
@@ -60,14 +67,6 @@
             </div>
 
           </div>
-
-<div class="d-flex justify-content-start align-items-center">
-<span class="avatar avatar-xxl mr-4" style="background-image: url({{\Auth::user()->event_photo}})"></span>
-<div class="form-group">
-<label for="exampleFormControlFile1">Cover Evento</label>
-<input type="file" name="event_photo" class="form-control-file" id="exampleFormControlFile1">
-</div>
-</div>
           <label class="form-label">Location Evento *</label>
           <input id="pac-input" class="controls" name="local" type="text" placeholder="Inserisci indirizzo della Location" required>
           <div id="map" class="mb-4"></div>

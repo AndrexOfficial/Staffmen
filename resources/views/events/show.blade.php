@@ -105,9 +105,22 @@
                     </div>
 
               </div>
+<div class="card-body">
+<div class="col col_4 iamgurdeep-pic">
+<h3 class="card-title mb-1">Descrizione Evento</h3>
+<div class="text-muted">{{$event->description}}</div>
+</div>
+</div>
+<div class="card-body">
+<div class="col col_4 iamgurdeep-pic">
+<h3 class="card-title mb-1">Immagine Evento</h3>
+<div class="coverImage" style= "box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+<img class="img-responsive iamgurdeeposahan" src="../{{$event->event_photo}}" alt="event-cover" style="background-image: url({{$event->event_photo}})">
+</div>
+</div>
+</div>
 
               <div class="card-body">
-
                 <div class="tab-content" id="myTabContent">
                   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h4 style="color: #6e7687;" class="card-title">

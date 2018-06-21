@@ -8,7 +8,7 @@
         
         public function index() {
             $events = \App\Event::where('date', '>=', \Carbon\Carbon::now())->paginate(5);
-
+            
             return view('events.index', compact('events'));
         }
         
@@ -197,86 +197,93 @@
                 $item->description = $request->description;
             }
             if ($request->event_photo){
+                
+                if($item->event_photo!=''){
+                    $path = 'public/images/event_covers/' . $item->event_photo;
+                    if (file_exists($path)) {
+                        unlink($path);
+                    }
+                }
                 $image = time() . '.' . $request->event_photo->getClientOriginalExtension();
                 $request->event_photo->move(public_path('images/event_covers/'), $image);
                 $url = 'public/images/event_covers/' . $image;
                 $item->event_photo = $url;
             }
-                $item->save();
-                return redirect('/events/' . $item->id)->with('success', 'Evento pubblicato correttamente!');
+            $item->save();
+            return redirect('/events/' . $item->id)->with('success', 'Evento pubblicato correttamente!');
+        }
+        
+        public function update(Request $request, $id) {
+            
+            if(\Auth::user()->role==1){
+                return back();
             }
             
-            public function update(Request $request, $id) {
+            $validator = \Validator::make($request->all(), [
+                                          'members_total' => 'required|integer',
+                                          'members_confirmed' => 'required|integer',
+                                          'local' => 'required',
+                                          'date' => 'required|date',
+                                          'time_start' => 'required|date_format:H:i',
+                                          'time_end' => 'required|date_format:H:i',
+                                          'cost' => 'required',
+                                          ]);
+            
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
+            }
+            
+            $item = \App\Event::find($id);
+            
+            $item->job_id = $request->job;
+            $item->num_members = $request->members_total;
+            $item->num_members_confirmed = $request->members_confirmed;
+            $item->local = $request->local;
+            $item->date = \Carbon\Carbon::parse($request->date);
+            $item->time_start = $request->time_start;
+            $item->time_end = $request->time_end;
+            $item->cost = $request->cost;
+            $item->status = $request->status;
+            if ($request->title) {
+                $item->title = $request->title;
+            }
+            if ($request->description) {
+                $item->description = $request->description;
+            }
+            if ($request->event_photo){
                 
-                if(\Auth::user()->role==1){
-                    return back();
-                }
-                
-                $validator = \Validator::make($request->all(), [
-                                              'members_total' => 'required|integer',
-                                              'members_confirmed' => 'required|integer',
-                                              'local' => 'required',
-                                              'date' => 'required|date',
-                                              'time_start' => 'required|date_format:H:i',
-                                              'time_end' => 'required|date_format:H:i',
-                                              'cost' => 'required',
-                                              ]);
-                
-                if ($validator->fails()) {
-                    return back()->withErrors($validator)->withInput();
-                }
-                
-                $item = \App\Event::find($id);
-                
-                $item->job_id = $request->job;
-                $item->num_members = $request->members_total;
-                $item->num_members_confirmed = $request->members_confirmed;
-                $item->local = $request->local;
-                $item->date = \Carbon\Carbon::parse($request->date);
-                $item->time_start = $request->time_start;
-                $item->time_end = $request->time_end;
-                $item->cost = $request->cost;
-                $item->status = $request->status;
-                if ($request->title) {
-                    $item->title = $request->title;
-                }
-                if ($request->description) {
-                    $item->description = $request->description;
-                }
-                if ($request->event_photo){
-
-                    if($item->event_photo!=''){
-                        $path = 'public/images/event_covers/' . $item->event_photo;
-                        if (file_exists($path)) {
-                            unlink($path);
-                        }
+                if($item->event_photo!=''){
+                    $path = 'public/images/event_covers/' . $item->event_photo;
+                    if (file_exists($path)) {
+                        unlink($path);
                     }
-                    $image = time() . '.' . $request->event_photo->getClientOriginalExtension();
-                    $request->event_photo->move(public_path('images/event_covers/'), $image);
-                    $url = 'public/images/event_covers/' . $image;
-                    $item->event_photo = $url;
                 }
-                    $item->save();
-                    return redirect('/events/')->with('success', 'Evento aggiornato correttamente!');
+                $image = time() . '.' . $request->event_photo->getClientOriginalExtension();
+                $request->event_photo->move(public_path('images/event_covers/'), $image);
+                $url = 'public/images/event_covers/' . $image;
+                $item->event_photo = $url;
+            }
+            $item->save();
+            return redirect('/events/')->with('success', 'Evento aggiornato correttamente!');
+        }
+        
+        public function delete(Request $request, $id) {
+            
+            // if(\Auth::user()->role==1){
+            //     return back();
+            // }
+            
+            $event = \App\Event::find($id);
+            
+            if($event) {
+                if($event->user_id==\Auth::user()->id){
+                    $event->delete();
                 }
-                
-                public function delete(Request $request, $id) {
-                    
-                    // if(\Auth::user()->role==1){
-                    //     return back();
-                    // }
-
-                    $event = \App\Event::find($id);
-                    
-                    if($event) {
-                        if($event->user_id==\Auth::user()->id){
-                            $event->delete();    
-                        }
-                        else{
-                            return redirect('/events/')->with('error', 'No! You can not cancel this event');        
-                        }                        
-                    }
-                    return redirect('/events/')->with('success', 'Yeah! Evento cancellato correttamente');
+                else{
+                    return redirect('/events/')->with('error', 'Eh No! Non puoi cancellare questo evento');
                 }
-                
+            }
+            return redirect('/events/')->with('success', 'Yeah! Evento cancellato correttamente');
+        }
+        
     }
