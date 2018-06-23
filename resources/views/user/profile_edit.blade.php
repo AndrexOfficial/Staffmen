@@ -43,6 +43,12 @@
              </select>
            </div>
 
+           <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-label">Data Evento *</label>
+                <input type="date" name="date_birthday" class="form-control" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" placeholder="dd/mm/yyyy" required>
+              </div>
+          </div>
            <div class="form-group mt-4">
               <label class="form-label">Età </label>
               <input type="text" name="age" class="form-control" value="{{\Auth::user()->age}}" placeholder="Inserisci età" >

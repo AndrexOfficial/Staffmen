@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('location')->nullable();
             $table->string('photo')->nullable();
             $table->string('role')->nullable();
+            $table->date('date_birthday')->nullable();
             $table->integer('age')->nullable();
             $table->string('phone_number')->nullable();
             $table->boolean('sex')->nullable();

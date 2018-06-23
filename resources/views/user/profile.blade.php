@@ -34,15 +34,15 @@
         <div class="link"><i class="fa fa-globe"></i>Dati Personali<i class="fa fa-chevron-down"></i></div>
         <ul class="submenu">
            <p class="mb-0"></p>
-          <li><a href="#"><i class="fa left-none"></i> Data di nascita : 03/09/1994</a></li>
+          <li><a href="#"><i class="fa left-none"></i> Data di nascita : {{\Auth::user()->date_birthday}}</a></li>
           <li><a href="#">Indirizzo : {{\Auth::user()->location}}</a></li>
           <li><a href="#">Email : {{\Auth::user()->email}}</a></li>
-          <li><a href="#">Lavoro : {{\Auth::user()->prev_job}}</a></li>
-               <!-- @foreach (\Auth::user()->jobs as $job)
-                <span class="tag">{{$job->name}}</span>
-              @endforeach -->
-          <li><a href="#">Età : {{\Auth::user()->age}}</a></li>
+          <li><a href="#">Ruolo : @if(\Auth::user()->role==1)Steward @else Organizzatore @endif</a></li>
+          <li><a href="#">Età : {{\Auth::user()->age}}</a></li>          
+          <li><a href="#">Sesso : @if(\Auth::user()->sex==1)Maschio @else Femmina @endif</a></li>
           <li><a href="#">Telefono : {{\Auth::user()->phone_number}}</a></li>
+          <li><a href="#">Lavoro precedente: {{\Auth::user()->prev_job}}</a></li>
+          <li><a href="#">Bio : {{\Auth::user()->descr}}</a></li>
         </ul>
       </li>
 

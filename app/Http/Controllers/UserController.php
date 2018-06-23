@@ -64,6 +64,7 @@ class UserController extends Controller {
         $user->sex = $request->sex;
         $user->descr = $request->descr;
         $user->prev_job = $request->job;
+        $user->date_birthday = $request->date_birthday;
         $user->tshirt_size = $request->tshirt_size;
         $user->height = $request->height;
         $user->hair = $request->hair;
