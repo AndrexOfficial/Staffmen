@@ -18,12 +18,6 @@
         <div class="coverImage">
           <img class="img-responsive iamgurdeeposahan" alt="copertina" src="{{\Auth::user()->photo}}">
         </div>
-        <div class="edit-pic">
-          <a href="#" target="_blank" class="fa fa-facebook"></a>
-          <a href="#" target="_blank" class="fa fa-instagram"></a>
-         
-        </div>
-
         <div class="username">
           <span class="avatar avatar-xxl" style="background-image: url({{\Auth::user()->photo}})"></span>
           <h3 class="mb-1">{{\Auth::user()->name}}</h3> 

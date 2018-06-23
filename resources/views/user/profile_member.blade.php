@@ -16,71 +16,501 @@
 <link rel="stylesheet" href="{{ asset('/css/profile-member-style.css')}}">
 </head>
 <body data-spy="scroll" data-target="#navbar" data-offset="30">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
   <div class="container">
 
     @if (Session::has('success'))
     	<div class="alert alert-success">{{ Session::get('success') }}</div>
     @endif
-<div class="card">
-      <div class="card-header">
-        <h3 class="card-title"><b>Profilo</b></h3>
-      </div>
-      <div class="card-body">
-        <div class="d-flex justify-content-start">
-          <span class="avatar avatar-xxl" style="background-image: url({{asset($member->photo)}})"></span>
-          <div class="ml-4">
-            <h3 class="mb-1">{{$member->name}}</h3>
-            @if($member->location)
-              <p class="text-muted"><i class="fe fe-map-pin"></i> {{$member->location}}</p>
-            @endif
 
-              <p>Curriculum CV:</p><a href="{{asset($member->cv)}}" target="_blank">Scarica Curriculum</a>
-          </div>                 
-        </div>
-      </div>
-        <div class="col-md-12">
-            <h5>Email:</h5><p>{{$member->email}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Indirizzo:</h5><p>{{$member->location}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Registrato come:</h5><p>@if($member->role==1)Steward @else Organizzatore @endif</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Numero di Telefono:</h5><p>{{$member->phone_number}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Bio:</h5><p>{{$member->descr}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Età:</h5><p>{{$member->age}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Sesso:</h5><p>@if($member->sex==1)Maschio @else Femmina @endif</p></p>
-        </div>
-        <div class="col-md-12">
-            <h5>Colore capelli:</h5><p>{{$member->hair}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Colore occhi:</h5><p>{{$member->eyes}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Altezza:</h5><p>{{$member->height}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Taglia maglietta:</h5><p>{{$member->tshirt_size}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Numero di piede:</h5><p>{{$member->shoes_size}}</p>
-        </div>
-        <div class="col-md-12">
-            <h5>Lavori precedenti:</h5><p>{{$member->prev_job}}</p>
-        </div>
+    <ul id="accordion" class="accordion">
+        <li>
+          <div class="col col_4 iamgurdeep-pic">
+            <div class="coverImage">
+              <img class="img-responsive iamgurdeeposahan" alt="copertina" src="{{asset($member->photo)}}">
+            </div>
+            <div class="username">
+              <span class="avatar avatar-xxl" style="background-image: url({{asset($member->photo)}})"></span>
+              <h3 class="mb-1">{{$member->name}}</h3> 
+              @if($member->location)
+                <p class="text-muted"><i class="fe fe-map-pin"></i> {{$member->location}}</p>
+              @endif
 
-    </div>
-      
-  </div>
+              <a href="{{asset($member->cv)}}" class="btn-o"><i class="fa fa-user-plus" target="_blank"></i>Scarica Curriculum</a>
+              <!-- <p>Curriculum CV:</p><a href="{{asset($member->cv)}}" target="_blank">Scarica Curriculum</a> -->
+            </div>
+          </div>   
+          <!-- About -->
+        </li>
+          <li>
+            <div class="link"><i class="fa fa-globe"></i>Dati Personali<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+               <p class="mb-0"></p>
+              <li><a href="#"><i class="fa left-none"></i> Data di nascita : 03/09/1994</a></li>
+              <li><a href="#">Indirizzo : {{$member->location}}</a></li>
+              <li><a href="#">Email : {{$member->email}}</a></li>
+              <li><a href="#">Ruolo : @if($member->role==1)Steward @else Organizzatore @endif</a></li>
+              <li><a href="#">Età : {{$member->age}}</a></li>
+              <li><a href="#">Sesso : @if($member->sex==1)Maschio @else Femmina @endif</a></li>
+              <li><a href="#">Telefono : {{$member->phone_number}}</a></li>
+              <li><a href="#">Lavoro Precedente : {{$member->prev_job}}</a></li>
+              <li><a href="#">Bio : {{$member->descr}}</a></li>
+            </ul>
+          </li>
+
+          <!-- Photo -->
+          <li>
+            <div class="link"><i class="fa fa-picture-o"></i>Dati Fisici <i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+               <p class="mb-0"></p>
+              <li><a href="#">Taglia Maglietta : {{$member->tshirt_size}}</a></li>
+              <li><a href="#">Altezza : {{$member->height}}</a></li>
+              <li><a href="#">Colore dei capelli : {{$member->hair}}</a></li>
+              <li><a href="#">Numero di scarpe : {{$member->shoes_size}}</a></li>
+              <li><a href="#">Colore degli occhi : {{$member->eyes}}</a></li>
+            </ul>
+          </li>
+
+          <!-- Past event -->
+          <li>
+    <ul class="submenu">
+    <div class="link"><i class="fa fa-users"></i>Past Events <small>1,053</small><i class="fa fa-chevron-down"></i></div>
+    <select name="jobs[]" multiple class="form-control">
+    @foreach (\App\Job::all() as $job)
+    <option value="{{$job->id}}">{{$job->name}}</option>
+    @endforeach
+    </select>
+          </li>
+        </ul>
+      </div>
+        
+    <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+    * {
+        margin: 0;
+      padding: 0;
+      -webkit-box-sizing: 100%;
+      -moz-box-sizing: 100%;
+      box-sizing: 100%;
+    }
+                
+                .accordion {
+                width: 100%;
+                }
+
+    .accordion li {
+    background-color: transparent;
+    }
+
+    .coverImage {
+        display: block;
+        position: relative;
+        height: 315px;
+        width: 100%;
+        overflow: hidden;
+        text-decoration: none;
+      }
+
+    .iamgurdeep-pic {
+        position: relative;
+        padding-right: 0rem; 
+        padding-left: 0rem; 
+        display: block;
+        position: relative;
+        height: 315px;
+    }
+    .username {
+        position: absolute;
+        bottom: 0;
+        color: #ffffff;
+        padding: 30px 15px 4px;
+       
+        width: 100%;
+        text-shadow: 1px 1px 2px #000000;
+        
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, #2d2c41 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, #2d2c41 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #2d2c41 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a64d4d4d',GradientType=0 ); /* IE6-9 */
+    }
+    .iamgurdeeposahan {
+        border-radius: 4px 4px 0 0;
+       
+    }
+
+    .col .iamgurdeep-pic {
+        padding-right: 0rem;
+        padding-left: 0rem;
+
+    }
+
+
+    .username > h2 {
+        font-family: oswald;
+        font-size: 27px;
+        font-weight: lighter;
+        margin: 31px 0 4px;
+        position: relative;
+        text-shadow: 1px 1px 2px #000000;
+        text-transform: uppercase;
+    }
+    .username > h2 small {
+        color: #ffffff;
+        font-family: open sans;
+        font-size: 13px;
+        font-weight: 400;
+        position: relative;
+    }
+    .username .fa{
+        color: #ffffff;
+        font-size: 14px;
+        margin: 0 0 0 4px;
+        position: static;
+    }
+    .edit-pic a {
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+        border: 1px solid #ffffff;
+        border-radius: 50%;
+        color: #ffffff;
+        font-size: 21px;
+        height: 39px;
+        line-height: 38px;
+        margin: 8px;
+        text-align: center;
+        width: 39px;
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+        text-decoration: none !important;
+         display: list-item;
+         background-color: rgba(255, 255, 255, 0.1)
+    }
+    .edit-pic a:hover {
+       font-size: 17px;
+       opacity: 0.9;
+      }
+    .edit-pic a:focus {
+       background:#b63b4d;
+        color: #fff;
+        border: 1px solid #b63b4d;
+    }
+    a:focus {
+        outline: none;
+        outline-offset: 0px;
+    }
+    .edit-pic {
+        position: absolute;
+        right: 10px;
+        top: 0;
+        opacity: 0;
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    .tags {
+        background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        display: inline-block;
+        font-size: 13px;
+        margin: 4px 0 0;
+        padding: 2px 5px;
+         -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    .tags:hover {
+        background: rgba(255, 255, 255, 0.3) none repeat scroll 0 0;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 2px;
+        display: inline-block;
+        font-size: 13px;
+        margin: 4px 0 0;
+        padding: 2px 5px;
+    }
+    #accordion:hover .edit-pic {
+        opacity: unset;
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+
+
+    .btn-o {
+        
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 2px;
+        color: #ffffff !important;
+        display: inline-block;
+        font-family: open sans;
+        font-size: 15px !important;
+        font-weight: normal !important;
+        margin: 0 0 10px;
+        padding: 5px 11px;
+        text-decoration: none !important;
+        text-transform: uppercase;
+        
+       background-color: rgba(255, 255, 255, 0.1);
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    .btn-o:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+        color: #fff !important;
+      }
+    .btn-o:focus {
+       background:#b63b4d;
+        color: #fff;
+        border: 1px solid #b63b4d;
+    }
+    .submenu .iamgurdeeposahan {
+        background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0 !important;
+        border-radius: 50%;
+        height: 60px;
+        padding: 2px;
+        width: 60px;
+    }
+    .photosgurdeep > a {
+        background: #ffffff none repeat scroll 0 0;
+        border-radius: 50%;
+        display: inline-block !important;
+        padding: 0 !important;
+    }
+    .view-all {
+        background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0 !important;
+        border: 1px solid;
+        float: right;
+        font-family: oswald;
+        font-size: 26px;
+        height: 60px;
+        line-height: 61px;
+        text-align: center;
+        width: 60px;
+    }
+    .photosgurdeep {
+        padding: 10px 9px 4px 35px;
+    }
+    ul {
+      list-style-type: none;
+    }
+
+    a {
+      color: #b63b4d;
+      text-decoration: none;
+    }
+
+    /** =======================
+     * Contenedor Principal
+     ===========================*/
+    h1 {
+      color: #FFF;
+      font-size: 24px;
+      font-weight: 400;
+      text-align: center;
+      margin-top: 40px;
+     }
+
+    h1 a {
+      color: #c12c42;
+      font-size: 16px;
+     }
+
+     .accordion {
+      width: 100%;
+     /* max-width: 360px;*/
+      margin: 30px auto 20px;
+      background: #FFF;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+     }
+
+    .accordion .link {
+      cursor: pointer;
+      display: block;
+      padding: 15px 15px 15px 42px;
+      color: #4D4D4D;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid #CCC;
+      position: relative;
+      -webkit-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+    }
+
+    .accordion li:last-child .link {
+      border-bottom: 0;
+    }
+
+    .accordion li i {
+      position: absolute;
+      top: 16px;
+      left: 12px;
+      font-size: 18px;
+      color: #595959;
+      -webkit-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+    }
+
+    .accordion li i.fa-chevron-down {
+      right: 12px;
+      left: auto;
+      font-size: 16px;
+    }
+
+    .accordion li.open .link {
+      color: #b63b4d;
+    }
+
+    .accordion li.open i {
+      color: #b63b4d;
+    }
+    .accordion li.open i.fa-chevron-down {
+      -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+
+    .accordion li.default .submenu {display: block;}
+    /**
+     * Submenu
+     -----------------------------*/
+     .submenu {
+      display: none;
+      /*background: #444359;*/
+      font-size: 14px;
+     }
+
+     .submenu li {
+      /*border-bottom: 1px solid #4b4a5e;*/
+     }
+
+     .submenu a {
+      display: block;
+      text-decoration: none;
+      /*color: #d9d9d9;*/
+      color: #000000;
+      padding: 12px;
+      padding-left: 42px;
+      -webkit-transition: all 0.25s ease;
+      -o-transition: all 0.25s ease;
+      transition: all 0.25s ease;
+     }
+
+     .submenu a:hover {
+      background: #b63b4d;
+      color: #FFF;
+     }
+
+
+    .nav.navbar-nav .dropdown-toggle {
+        padding: 0 !important;
+    }
+
+    .dropdown-toggle span {
+        background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        font-size: 23px !important;
+        height: 38px;
+        line-height: 40px;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center;
+        width: 38px;
+        text-shadow:none !important;
+    }
+
+    .nav.navbar-nav {
+        bottom: 10px;
+        position: absolute;
+        right: 12px;
+        transition: all 0.4s ease 0s;
+    }
+
+    .navbar-nav > li > .dropdown-menu {
+        border-radius: 2px !important;
+        margin-top: 10px;
+        min-width: 101px;
+        padding: 0;
+    }
+    .navbar-nav > li > .dropdown-menu li a {
+        color: #333333 !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        padding: 2px 8px !important;
+        text-align: right !important;
+        text-shadow:none !important;
+    }
+    .dropdown-toggle {
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0 !important;
+        font-size: 15px !important;
+    }
+
+    .dropdown {
+      -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    .dropdown-menu>li>a {
+        color:#428bca;
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    .dropdown ul.dropdown-menu {
+        border-radius:4px;
+        box-shadow:none;
+    }
+    .dropdown ul.dropdown-menu:before {
+        content: "";
+        border-bottom: 10px solid #fff;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        position: absolute;
+        top: -8px;
+        right: 8px;
+        z-index: 10;
+    }
+
+    </style>
+
+    <script>
+
+    $(function() {
+        var Accordion = function(el, multiple) {
+        this.el = el || {};
+        this.multiple = multiple || false;
+
+        // Variables privadas
+        var links = this.el.find('.link');
+        // Evento
+        links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+      }
+
+      Accordion.prototype.dropdown = function(e) {
+        var $el = e.data.el;
+          $this = $(this),
+          $next = $this.next();
+
+        $next.slideToggle();
+        $this.parent().toggleClass('open');
+
+        if (!e.data.multiple) {
+          $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+        };
+      } 
+
+      var accordion = new Accordion($('#accordion'), false);
+    });
+
+    </script>
 
 @endsection
