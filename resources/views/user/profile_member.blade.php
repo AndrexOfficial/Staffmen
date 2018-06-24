@@ -33,10 +33,7 @@
             <div class="username">
               <span class="avatar avatar-xxl" style="background-image: url({{asset($member->photo)}})"></span>
               <h3 class="mb-1">{{$member->name}}</h3> 
-              @if($member->location)
-                <p class="text-muted"><i class="fe fe-map-pin"></i> {{$member->location}}</p>
-              @endif
-
+              <small><i class="fa fa-map-marker"></i>{{$member->location}}</small>
               <a href="{{asset($member->cv)}}" class="btn-o"><i class="fa fa-user-plus" target="_blank"></i>Scarica Curriculum</a>
               <!-- <p>Curriculum CV:</p><a href="{{asset($member->cv)}}" target="_blank">Scarica Curriculum</a> -->
             </div>
