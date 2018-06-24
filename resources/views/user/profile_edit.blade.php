@@ -14,13 +14,13 @@
           <form id="form" class="mt-4" method="post" action="{{url('/profile/edit')}}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-<div class="d-flex justify-content-start align-items-center">
-<span class="avatar avatar-xxl mr-4" style="background-image: url({{asset(\Auth::user()->photo)}})"></span>
-<div class="form-group">
-<label for="exampleFormControlFile1">Foto del Profilo</label>
-<input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
-</div>
-</div>
+            <div class="d-flex justify-content-start align-items-center">
+            <span class="avatar avatar-xxl mr-4" style="background-image: url({{asset(\Auth::user()->photo)}})"></span>
+            <div class="form-group">
+            <label for="exampleFormControlFile1">Foto del Profilo</label>
+            <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            </div>
 
             <div class="form-group mt-4">
               <label class="form-label">Nome e Cognome *</label>
@@ -31,24 +31,14 @@
               <label class="form-label">Indirizzo di residenza</label>
               <input id="pac-input" name="location" class="controls" type="text" value="{{\Auth::user()->location}}" placeholder="Inserisci indirizzo di residenza" >
               <div id="map"></div>
-
             </div>
 
-            <div class="form-group">
-             <label class="form-label">Eventi a cui hai partecipato</label>
-             <select name="jobs[]" multiple class="form-control">
-               @foreach (\App\Job::all() as $job)
-                 <option value="{{$job->id}}">{{$job->name}}</option>
-               @endforeach
-             </select>
-           </div>
+            <div class="form-group mt-4">
+            <label class="form-label">Data di nascita</label>
+            <input type="date" name="date_birthday" class="form-control" value="{{\Auth::user()->date_birthday}}" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" placeholder="dd/mm/yyyy">
+            {{-- <small class="form-text text-muted">Non condividiamo i tuoi dati.</small> --}}
+            </div>
 
-           <div class="col-md-4">
-              <div class="form-group">
-                <label class="form-label">Data Evento *</label>
-                <input type="date" name="date_birthday" class="form-control" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" placeholder="dd/mm/yyyy" required>
-              </div>
-          </div>
            <div class="form-group mt-4">
               <label class="form-label">Età </label>
               <input type="text" name="age" class="form-control" value="{{\Auth::user()->age}}" placeholder="Inserisci età" >
@@ -57,6 +47,10 @@
               <label class="form-label">Numero di telefono </label>
               <input type="text" name="phone" class="form-control" value="{{\Auth::user()->phone_number}}" placeholder="Inserisci numero di telefono">
           </div>
+            <div class="form-group">
+            <label class="form-label">Bio (max. 600 caratteri)</label>
+            <textarea class="form-control" name="descr" rows="4">{{\Auth::user()->descr}}</textarea>
+            </div>
             <div class="form-group mt-4">
               <label class="form-label">T-Shirt size </label>
               <input type="text" name="tshirt_size" class="form-control" value="{{\Auth::user()->tshirt_size}}" placeholder="Inserisci la taglia della tua maglia">
@@ -83,28 +77,24 @@
                  <option value="1" {{\Auth::user()->sex == 1 ? 'selected' : ''}} >Maschio</option>
                  <option value="2" {{\Auth::user()->sex == 2 ? 'selected' : ''}} >Femmina</option>
              </select>
-             <div class="form-group mt-4">
-              <label class="form-label">Descrivi te stesso </label>
-              <input type="text" name="descr" class="form-control" value="{{\Auth::user()->descr}}" placeholder="Racconta te stesso in poche righe" >
-          </div>
-          </div>
+        </div>
           <div class="form-group mt-4">
               <label class="form-label">Lavori Precedenti </label>
               <input type="text" name="job" class="form-control" value="{{\Auth::user()->prev_job}}" placeholder="Inserisci esperienze lavorative passate">
           </div>
           @if(\Auth::user()->resume!='')
             <!-- <div class="form-group mt-4">
-                <label class="form-label"><a href="{{url('/')}}{{\Auth::user()->resume}}">Download here</a></label>
+                <label class="form-label"><a href="{{url('/')}}/{{\Auth::user()->resume}}">Scarica Curriculum</a></label>
             </div> -->
             <div class="form-group mt-4">
                 <label class="form-label">Carica Curriculum </label>
-                <input type="file" name="cv">
-                <a href="{{url('/')}}{{\Auth::user()->resume}}" target="_blank">Scarica Curriculum</a>
+                <input type="file" name="resume">
+                <a href="{{url('/')}}/{{\Auth::user()->resume}}" target="_blank">Scarica Curriculum</a>
             </div>
           @else
             <div class="form-group mt-4">
                 <label class="form-label">Carica Curriculum </label>
-                <input type="file" name="cv">
+                <input type="file" name="resume">
             </div>
           @endif
 

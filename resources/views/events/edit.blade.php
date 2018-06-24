@@ -35,14 +35,14 @@
               <div class="form-group">
                 <label class="form-label">Numero di posti totali *</label>
                 <input name="members_total" type="number" value="{{$event->num_members}}" class="form-control" placeholder="10" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                {{-- <small class="form-text text-muted">Non condividiamo i tuoi dati.</small> --}}
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Numero di posti già occupati *</label>
                 <input name="members_confirmed" value="{{$event->num_members_confirmed}}" type="number" class="form-control" placeholder="6" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                {{-- <small class="form-text text-muted">Non condividiamo i tuoi dati.</small> --}}
               </div>
             </div>
             <div class="col-md-4">
@@ -66,7 +66,7 @@
               <div class="form-group">
                 <label class="form-label">Data Evento *</label>
                 <input type="date" name="date" class="form-control" value="{{$event->date}}" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" placeholder="dd/mm/yyyy" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                {{-- <small class="form-text text-muted">Non condividiamo i tuoi dati.</small> --}}
               </div>
           </div>
 
@@ -74,14 +74,14 @@
               <div class="form-group">
                 <label class="form-label">Ora di Inizio *</label>
                 <input type="text" name="time_start" class="form-control" value="{{$event->time_start}}" data-inputmask-alias="hh:mm" data-inputmask-inputformat="hh:mm" placeholder="hh:mm" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                {{-- <small class="form-text text-muted">Non condividiamo i tuoi dati.</small> --}}
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Ora di Fine *</label>
                 <input type="text" name="time_end" class="form-control"  value="{{$event->time_end}}" data-inputmask-alias="hh:mm" data-inputmask-inputformat="hh:mm" placeholder="hh:mm" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                {{-- <small class="form-text text-muted">Non condividiamo i tuoi dati.</small> --}}
               </div>
             </div>
           </div>
