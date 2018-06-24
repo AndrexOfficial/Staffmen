@@ -25,6 +25,12 @@
                       <small><b>PROSSIMI EVENTI</b></small>
                       <span class="ml-auto tag">{{$events->total()}}</span>
                     </a>
+                    <div class="list-group list-group-transparent mb-6">
+                    <a href="{{ URL::to('/pastevents')}}" class="list-group-item list-group-item-action d-flex align-items-center @if(\Request::path()=='pastevents') active @endif">
+                    <span class="icon mr-3"><i class="fe fe-chevron-right"></i></span>
+                    <small><b>EVENTI PASSATI</b></small>
+                    <span class="ml-auto tag">{{$events->total()}}</span>
+                    </a>
                     <a href="{{ URL::to('/my-events')}}" class="list-group-item list-group-item-action d-flex align-items-center @if(\Request::path()=='my-events') active @endif">
                       <span class="icon mr-3">
                         <i class="fe fe-chevron-right"></i></span>
@@ -44,9 +50,9 @@
                         <span class="ml-auto tag">{{\Auth::user()->pending->count()}}</span>
                     </a>
                   </div>
-
                 </div>
               </div>
+            </div>
               <div class="col-md-9">
 
                 <div class="card">
@@ -55,6 +61,8 @@
                     <h3 class="card-title"><b>
                       @if(\Request::path()=='events')
                         Prossimi Eventi
+                    @elseif(\Request::path()=='pastevents')
+                        Eventi Passati
                       @elseif(\Request::path()=='my-events')
                         I Miei Eventi
                       @elseif(\Request::path()=='attending')

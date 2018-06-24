@@ -23,9 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        // $games = \App\Game::paginate(5);
-        // return view('home',compact('games'));
         return redirect('/events');
     }
 }

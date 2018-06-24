@@ -42,6 +42,7 @@ Route::get('/invites', 'UserController@invites')->middleware('auth');
 
 
 Route::get('/events', 'EventController@index')->middleware('auth');
+Route::get('/pastevents', 'EventController@pastEvents')->middleware('auth');
 Route::get('/my-events', 'EventController@myindex')->middleware('auth');
 Route::get('/attending', 'EventController@attending')->middleware('auth');
 Route::get('/pending', 'EventController@pending')->middleware('auth');

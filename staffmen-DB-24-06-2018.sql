@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 21, 2018 at 09:21 AM
+-- Generation Time: Jun 24, 2018 at 12:50 PM
 -- Server version: 10.0.35-MariaDB
 -- PHP Version: 5.6.30
 
@@ -40,7 +40,7 @@ CREATE TABLE `events` (
   `time_end` time NOT NULL,
   `cost` double NOT NULL,
   `title` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `status` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -52,9 +52,11 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `user_id`, `num_members`, `num_members_confirmed`, `local`, `job_id`, `date`, `time_start`, `time_end`, `cost`, `title`, `description`, `status`, `created_at`, `updated_at`, `event_photo`) VALUES
-(14, 1, 40, 1, 'The Gintoneria of DavidVia Napo Torriani, 15, 20124 Milano MI, Italy', 1, '2018-06-22', '21:36:00', '04:36:00', 38, 'Ginto di Davide', 'Ciao', 1, '2018-06-20 21:37:22', '2018-06-20 21:37:22', NULL),
+(14, 1, 40, 1, 'The Gintoneria of DavidVia Napo Torriani, 15, 20124 Milano MI, Italy', NULL, '2018-06-22', '21:36:00', '04:36:00', 38, 'Ginto di Davide', '<p>Ciao</p>', NULL, '2018-06-20 21:37:22', '2018-06-21 20:59:01', 'public/images/event_covers/1529596741.jpg'),
 (15, 1, 400, 1, 'Autoarona Spa - Concessionaria VolkswagenVia Borgomanero, 46b, 28040 Paruzzaro NO, Italy', 1, '2018-06-27', '14:45:00', '22:45:00', 45, 'Evento Michelin', 'Prova', 1, '2018-06-20 21:46:42', '2018-06-20 21:46:42', NULL),
-(17, 6, 100, 10, 'Pogue Mahone\'s, Via Vittorio Salmini, Milano, MI, Italia', NULL, '2018-08-11', '12:30:00', '20:30:00', 300, 'Irish party', '<p>Solo oggi&nbsp;tutte&nbsp;le birre&nbsp;a 7 euro!!!</p>', NULL, '2018-06-21 18:38:28', '2018-06-21 19:03:01', 'public/images/event_covers/1529589781.jpg');
+(17, 6, 100, 10, 'Pogue Mahone\'s, Via Vittorio Salmini, Milano, MI, Italia', NULL, '2018-06-20', '12:30:00', '20:30:00', 300, 'Irish party', '<p>Solo oggi&nbsp;tutte&nbsp;le birre&nbsp;a 7 euro!!!</p>', NULL, '2018-06-21 18:38:28', '2018-06-21 19:03:01', 'public/images/event_covers/1529589781.jpg'),
+(21, 10, 10, 2, 'IED Istituto Europeo di Design | Milano, Via Amatore Sciesa, Milano, MI, Italia', NULL, '2019-10-10', '20:00:00', '23:00:00', 10, 'Garden Party by Campari in NYX Milan Hotel', '<p>SABATO 16 SETTEMBRE 2017&nbsp;YOUparti&nbsp;Ha il Piacere di Invitarti<br />&nbsp;</p>', NULL, '2018-06-24 19:20:00', '2018-06-24 19:20:00', 'public/images/event_covers/1529850000.jpg'),
+(23, 1, 200, 1, 'Sagam, Viale Fulvio Testi, Milan, Metropolitan City of Milan, Italy', NULL, '2018-06-25', '10:00:00', '19:00:00', 34, 'Evento Sagam', '<p>maestosa, espressiva, elegante, Nuova Touareg ha uno sguardo libero verso l&rsquo;avventura. La massiccia calandra cromata appare scolpita per racchiudere i gruppi ottici senza soluzione di continuit&agrave; e i nuovi fari a LED Matrix IQ Light con regolazione dinamica degli abbaglianti &ldquo;Dynamic Light Assist&rdquo; illuminano la carreggiata in modo fluido e intelligente, generando un fascio luminoso dall&rsquo;intensit&agrave; ottimale in qualsiasi situazione.<br />Le nuove proporzioni diventano dinamiche grazie all&rsquo;utilizzo del pianale modulare longitudinale (MLB) mentre le linee sono tese, partendo dal tetto si sviluppano fluide lateralmente per terminare in modo dinamico nel montante posteriore nettamente inclinato in avanti.</p><p>l&rsquo;abitacolo di Nuova Touareg &egrave; stato progettato per accogliere i suoi occupanti in un ambiente raffinato e funzionale a livello d&rsquo;eccellenza mentre la plancia, orientata verso il posto di guida, diventa pi&ugrave; ergonomica. A regalare una sensazione di libert&agrave; senza confini, ci pensa il tetto panoramico che, sollevabile con un semplice click, offre una sensazione di maggiore spaziosit&agrave; e una piacevole luminosit&agrave; all&rsquo;interno dell&rsquo;abitacolo.</p><p>progresso &egrave; parola d&rsquo;ordine nel lancio di Nuova Touareg, ammiraglia equipaggiata con soluzioni di connettivit&agrave; della nuova era e una futuristica integrazione di sistemi di assistenza, comfort, illuminazione infotainment, per regalarti una nuova e indimenticabile esperienza di guida. Grazie al sistema &ldquo;Head-up dispaley&rdquo; avrai la possibilit&agrave; di vedere la proiezione del tachimetro, direttamente sul parabrezza per garantire la massima concentrazione al volante e lo sguardo rivolto sempre verso la strada. La tecnologia si conferma anche nei sistemi di navigazione, sicurezza e illuminazione premium, guida assistita e parcheggio automatizzato.</p>', NULL, '2018-06-24 22:00:01', '2018-06-24 22:00:01', 'public/images/event_covers/1529859601.jpg');
 
 -- --------------------------------------------------------
 
@@ -304,9 +306,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `location`, `photo`, `role`, `age`, `phone_number`, `sex`, `descr`, `prev_job`, `cover_photo`, `tshirt_size`, `height`, `hair`, `shoes_size`, `eyes`, `password`, `resume`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Andrea Mapelli', 'info@ns7records.com', 'IED Istituto Europeo di Design | Milano, Via Amatore Sciesa, Milan, Metropolitan City of Milan, Italy', 'public/images/1529021038.jpg', '2', 23, '340895622', 1, NULL, 'Ikea', NULL, 'S', '172', 'Marroni', '42', 'Marroni', '$2y$10$y6bCbIcwXxeJmCFYZi7y8OjRd9q.0faoZ.XR8VF8pNK/QdeTDOdKG', NULL, 'i8T4bc8qJljRN0FUFyrabIaY6UwvAEyRbFYC2VJP9l0mTTaBbWe9zeFwWuon', '2018-06-15 09:43:29', '2018-06-15 10:03:58'),
-(4, 'francesco', 'prova@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$YLsjq6xMYqTKTSFV.Q4nYe3hMI.7RYAJpGQbLzm/x6xO85h5Q8J16', NULL, 'ROUXifeFuUZkbMgfDioDDP9Y48osR6COe71HZnviRbxdVK6o3mqwg8JQKWWb', '2018-06-19 00:09:58', '2018-06-19 00:09:58'),
-(6, 'Giovanni Brocca', 'giovanni@gmail.com', 'IED Istituto Europeo di Design | Milano, Via Amatore Sciesa, Milano, MI, Italia', 'public/images/1529588431.jpg', '2', 21, '3339899122', 1, NULL, 'Menager', NULL, 'M', '1,80 cm', 'blu', '45', 'blu', '$2y$10$jZj67ESczjWv99B7S5GFheaR/wZxqkuLRAbGHLhK8/ZXgREZ60lvC', NULL, NULL, '2018-06-21 18:36:01', '2018-06-21 18:40:32');
+(1, 'Andrea Mapelli', 'info@ns7records.com', 'IED Istituto Europeo di Design | Milano, Via Amatore Sciesa, Milan, Metropolitan City of Milan, Italy', 'public/images/1529771967.jpg', '2', 23, '3402000000', 1, 'Sono simpatico :)', 'Ikea', NULL, 'S', '1,72 cm', 'marroni', '42', 'marroni', '$2y$10$y6bCbIcwXxeJmCFYZi7y8OjRd9q.0faoZ.XR8VF8pNK/QdeTDOdKG', NULL, 'xghsZG6garvZt91Jd8FW5hj6QtfWV4xulMczPwxo7wpPOoaOQNIPBpx2Voiz', '2018-06-15 09:43:29', '2018-06-23 21:39:27'),
+(4, 'francesco', 'prova@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$YLsjq6xMYqTKTSFV.Q4nYe3hMI.7RYAJpGQbLzm/x6xO85h5Q8J16', NULL, '3VD84Xubbeo8gIGPgvKmKBIC5puMY0IOwbfnoFcHnI4oHIbGnXBjqlskLeoX', '2018-06-19 00:09:58', '2018-06-19 00:09:58'),
+(6, 'Giovanni Brocca', 'giovanni@gmail.com', 'IED Istituto Europeo di Design | Milano, Via Amatore Sciesa, Milano, MI, Italia', 'public/images/1529768784.jpg', '2', 21, '3339899122', 1, NULL, 'Menager', NULL, 'M', '1,80 cm', 'blu', '45', 'blu', '$2y$10$jZj67ESczjWv99B7S5GFheaR/wZxqkuLRAbGHLhK8/ZXgREZ60lvC', NULL, NULL, '2018-06-21 18:36:01', '2018-06-23 20:46:24'),
+(8, 'Joelle', 'joelle15@hotmail.it', NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$tUN2HC6gsV/0i.O.dD/hz.eZ./jGPD05QTUVQJJSKxf7f8/JivvvW', NULL, NULL, '2018-06-22 11:18:17', '2018-06-22 11:18:17'),
+(9, 'francesco', 'francesco@gmail.com', NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$xb2moBblfR//un3n6qRRWelq77/6fcKFlnLSMOFAjuZTi6ALdDl/W', NULL, 'yTyZjcNV2SfdvsjRPi7x77LwESH26G5jTZ36qncYBZACFmZAuEBG6hHfG3rm', '2018-06-23 21:50:15', '2018-06-23 21:50:15'),
+(10, 'francescoAdmin', 'fraadmin@gmail.com', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$7VQTopNDXpqQ9eWpHNd4neSJYPkEYXJV/hUGDYgdwNQjBlPCaveyK', NULL, NULL, '2018-06-24 19:02:21', '2018-06-24 19:02:21'),
+(11, 'fra', 'fra@gmail.com', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$yAsJvHF3cBb8fvNAI50rt..EFA2TTbS8tExkA30dsU6tbRtkHqLeC', NULL, NULL, '2018-06-24 22:49:40', '2018-06-24 22:49:40');
 
 -- --------------------------------------------------------
 
@@ -424,7 +430,7 @@ ALTER TABLE `user_jobs`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `event_members`
@@ -466,7 +472,7 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_jobs`

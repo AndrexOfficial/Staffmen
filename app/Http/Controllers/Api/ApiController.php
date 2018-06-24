@@ -213,6 +213,19 @@ class ApiController extends Controller {
         if ($request->description) {
             $item->description = $request->description;
         }
+        if ($request->event_photo){
+            
+            if($item->event_photo!=''){
+                $path = 'public/images/event_covers/' . $item->event_photo;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+            $image = time() . '.' . $request->event_photo->getClientOriginalExtension();
+            $request->event_photo->move(public_path('images/event_covers/'), $image);
+            $url = 'public/images/event_covers/' . $image;
+            $item->event_photo = $url;
+        }
         $item->save();
         return json_encode(array('status' => true,'msg'=>"Evento pubblicato correttamente!"));    
     }
@@ -256,6 +269,19 @@ class ApiController extends Controller {
             }
             if ($request->description) {
                 $item->description = $request->description;
+            }
+            if ($request->event_photo){
+                
+                if($item->event_photo!=''){
+                    $path = 'public/images/event_covers/' . $item->event_photo;
+                    if (file_exists($path)) {
+                        unlink($path);
+                    }
+                }
+                $image = time() . '.' . $request->event_photo->getClientOriginalExtension();
+                $request->event_photo->move(public_path('images/event_covers/'), $image);
+                $url = 'public/images/event_covers/' . $image;
+                $item->event_photo = $url;
             }
             $item->save();
             return json_encode(array('status' => true,'msg'=>"Evento aggiornato correttamente!"));
@@ -357,17 +383,43 @@ class ApiController extends Controller {
         $user->shoes_size = $request->shoes_size;
         $user->eyes = $request->eyes;
 
-        if ($request->cv){
-            $image = time() . '.' . $request->cv->getClientOriginalExtension();
-            $request->cv->move(public_path('images'), $image);
-            $url = 'public/images/curriculum/' . $image;
-            $user->resume = $url;
+        if ($request->cv!=''){
+            // $image = time() . '.' . $request->cv->getClientOriginalExtension();
+            // $request->cv->move(public_path('images'), $image);
+            // $url = 'public/images/curriculum/' . $image;
+            // $user->resume = $url;
+            // $img = str_replace('data:image/png;base64,', '', $request->cv);
+            // $img = str_replace(' ', '+', $img);
+            $data = base64_decode($request->cv);
+
+            $file_cv_name = uniqid() . '.jpg';
+            $file = public_path('images/curriculum/'). $file_cv_name;
+
+            // imagejpeg($data,$file,50);
+
+            touch($file);
+            chmod($file, 0775);
+            $file1 = fopen($file, 'w');
+            fwrite($file1, $data);
+            fclose($file1);
+            $user->resume = $file_cv_name;
         }        
-        if ($request->photo){
-            $image = time() . '.' . $request->photo->getClientOriginalExtension();
-            $request->photo->move(public_path('images'), $image);
-            $url = 'public/images/' . $image;
-            $user->photo = $url;
+        if ($request->photo!=''){
+            // $image = time() . '.' . $request->photo->getClientOriginalExtension();
+            // $request->photo->move(public_path('images'), $image);
+            // $url = 'public/images/' . $image;
+            // $user->photo = $url;
+            // $img = str_replace('data:image/png;base64,', '', $request->photo);
+            // $img = str_replace(' ', '+', $img);
+            $data = base64_decode($request->photo);
+            $file_photo_name = uniqid() . '.jpg';
+            $file = public_path('images/'). $file_photo_name;
+            touch($file);
+            chmod($file, 0775);
+            $file1 = fopen($file, 'w');
+            fwrite($file1, $data);
+            fclose($file1);
+            $user->photo = $file_photo_name;
         }
 
         $user->save();

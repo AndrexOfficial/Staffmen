@@ -7,7 +7,13 @@
     class EventController extends Controller {
         
         public function index() {
-            $events = \App\Event::where('date', '>=', \Carbon\Carbon::now())->paginate(5);
+            $events = \App\Event::where('date', '>=', \Carbon\Carbon::now())->paginate(6);
+            
+            return view('events.index', compact('events'));
+        }
+        
+        public function pastEvents() {
+            $events = \App\Event::where('date', '<=', \Carbon\Carbon::now())->paginate(6);
             
             return view('events.index', compact('events'));
         }
