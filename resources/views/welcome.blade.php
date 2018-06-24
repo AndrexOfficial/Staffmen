@@ -58,11 +58,7 @@
         <div class="img-holder mt-3"><img src="images/iphonex.png" alt="phone" class="img-fluid"></div>
     </header>
 
-    <div class="client-logos my-5">
-        <div class="container text-center">
-            <img src="images/client-logos.png" alt="client logos" class="img-fluid">
-        </div>
-    </div>
+    
 
     <div class="section light-bg" id="features">
 
