@@ -34,6 +34,7 @@ Route::post('login','Api\ApiController@login');
 Route::post('forget','Api\ApiController@forget');
 Route::get('password/reset/{token}', 'Api\ApiController@getReset');
 
+Route::post('getevent', 'Api\ApiController@getevent');
 Route::post('createevent', 'Api\ApiController@createevent');
 Route::post('deleteevent', 'Api\ApiController@deleteevent');
 Route::post('editevent', 'Api\ApiController@editevent');

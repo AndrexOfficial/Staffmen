@@ -230,8 +230,18 @@ class ApiController extends Controller {
         return json_encode(array('status' => true,'msg'=>"Evento pubblicato correttamente!"));    
     }
 
-    public function getevents(Request $request){
-        $events = Event::where('id',$request->id)->get();
+    public function getevent(Request $request){
+        if($request->id!=''){
+          $events = Event::where('id',$request->id)->get(); 
+          if(count($events)>0){
+            return json_encode(array('status' => true,'data' => $events));       
+          }
+          else{
+            return json_encode(array('status' => false,'data' => 'No event found!'));     
+          }
+          
+        }
+        
     }
     public function editevent(Request $request) {
 
@@ -254,7 +264,9 @@ class ApiController extends Controller {
 
         $item = Event::find($request->id);
 
-        if(count($item)>0){
+        $check = Event::where('id',$request->id)->count();
+
+        if($check>0){
             $item->job_id = $request->job_id;
             $item->num_members = $request->members_total;
             $item->num_members_confirmed = $request->members_confirmed;
@@ -342,6 +354,46 @@ class ApiController extends Controller {
             return json_encode(array('status' => false,'msg'=>$messages));    
         }
         $user = \App\User::find($request->id);
+
+        if ($user->location == '') {
+            $user->location = 'empty';
+        }
+        if ($user->photo == '') {
+            $user->photo = 'empty';
+        }
+        if ($user->phone_number == '') {
+            $user->phone_number = 'empty';
+        }
+        if ($user->descr == '') {
+            $user->descr = 'empty';
+        }
+        if ($user->prev_job == '') {
+            $user->prev_job = 'empty';
+        }
+        if ($user->cover_photo == '') {
+            $user->cover_photo = 'empty';
+        }
+        if ($user->tshirt_size == '') {
+            $user->tshirt_size = 'empty';
+        }
+        if ($user->height == '') {
+            $user->height = 'empty';
+        }
+        if ($user->hair == '') {
+            $user->hair = 'empty';
+        }
+        if ($user->shoes_size == '') {
+            $user->shoes_size = 'empty';
+        }
+        if ($user->eyes == '') {
+            $user->eyes = 'empty';
+        }
+        if ($user->resume == '') {
+            $user->resume = 'empty';
+        }
+        if ($user->date_birthday == '') {
+            $user->date_birthday = 'empty';
+        }
 
         return json_encode(array('status' => true,'data'=>$user)); 
 

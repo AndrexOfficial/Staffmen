@@ -8,20 +8,22 @@
         
         public function index() {
             $events = \App\Event::where('date', '>=', \Carbon\Carbon::now())->paginate(6);
-            
-            return view('events.index', compact('events'));
+            $previous_event = \App\Event::where('date', '<=', \Carbon\Carbon::now())->count();
+            return view('events.index', compact('events','previous_event'));
         }
         
         public function pastEvents() {
             $events = \App\Event::where('date', '<=', \Carbon\Carbon::now())->paginate(6);
+            $previous_event = \App\Event::where('date', '<=', \Carbon\Carbon::now())->count();
             
-            return view('events.index', compact('events'));
+            return view('events.index', compact('events','previous_event'));
         }
         
         public function myindex() {
             
             $events = \Auth::user()->myEvents()->paginate(5);
-            return view('events.index', compact('events'));
+            $previous_event = \App\Event::where('date', '<=', \Carbon\Carbon::now())->count();
+            return view('events.index', compact('events','previous_event'));
         }
         
         public function index_json() {
@@ -47,13 +49,15 @@
         public function attending() {
             
             $events = \Auth::user()->attending()->paginate(5);
-            return view('events.index', compact('events'));
+            $previous_event = \App\Event::where('date', '<=', \Carbon\Carbon::now())->count();
+            return view('events.index', compact('events','previous_event'));
         }
         
         public function pending() {
             
             $events = \Auth::user()->pending()->paginate(5);
-            return view('events.index', compact('events'));
+            $previous_event = \App\Event::where('date', '<=', \Carbon\Carbon::now())->count();
+            return view('events.index', compact('events','previous_event'));
         }
         
         public function accept($id, $member_id) {
